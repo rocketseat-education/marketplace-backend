@@ -2,6 +2,7 @@ import { User } from "../entities/User";
 import {
   UserRepositoryInterface,
   CreateUserParams,
+  UploadProfiePhotoParams,
 } from "../../../../../domain/user/repositoryInterface/user-repository.interface";
 import { Repository } from "typeorm";
 import { MarketPlaceDataSource } from "../data-source";
@@ -12,6 +13,20 @@ export class UserTypeormRepository implements UserRepositoryInterface {
 
   constructor() {
     this.userRepository = MarketPlaceDataSource.getRepository(User);
+  }
+  async uploadProfilePhoto({
+    url,
+    userId,
+  }: UploadProfiePhotoParams): Promise<string> {
+    try {
+      await this.userRepository.update({ id: userId }, { photo: url });
+      return url;
+    } catch (error) {
+      throw new DatabaseError(
+        "Falha ao salvar foto de perfil do usuário!",
+        error
+      );
+    }
   }
 
   async createUser(user: CreateUserParams): Promise<User> {
