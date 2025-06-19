@@ -1,0 +1,39 @@
+{
+  "name": "market-place-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsx watch src/server.ts",
+    "start": "ts-node src/index.ts",
+    "typeorm": "typeorm-ts-node-commonjs",
+    "migration:run": "yarn typeorm migration:run -- -d src/infra/database/typeorm/market-place/data-source.ts",
+    "migration:revert": "yarn typeorm migration:revert -- -d src/database/typeorm/market-place/data-source.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@fastify/cors": "^11.0.0",
+    "@fastify/swagger": "^9.4.2",
+    "@fastify/swagger-ui": "^5.2.2",
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.5",
+    "fastify": "^5.1.0",
+    "fluent-json-schema": "^5.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.4.0",
+    "reflect-metadata": "^0.1.13",
+    "sqlite3": "^5.1.7",
+    "typeorm": "0.3.20",
+    "zod": "^3.23.8",
+    "zod-to-json-schema": "^3.23.5"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.10",
+    "ts-node": "10.9.1",
+    "tsx": "^4.19.2",
+    "typescript": "4.5.2"
+  }
+}
