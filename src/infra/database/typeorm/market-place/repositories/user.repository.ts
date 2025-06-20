@@ -14,6 +14,15 @@ export class UserTypeormRepository implements UserRepositoryInterface {
   constructor() {
     this.userRepository = MarketPlaceDataSource.getRepository(User);
   }
+  async updateUserData(user: Partial<CreateUserParams>): Promise<User> {
+    try {
+      const userCreated = await this.userRepository.save(user);
+      return userCreated;
+    } catch (error) {
+      throw new DatabaseError("Falha ao atualizar dados do usuário!", error);
+    }
+  }
+
   async uploadProfilePhoto({
     url,
     userId,

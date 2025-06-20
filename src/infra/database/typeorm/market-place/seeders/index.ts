@@ -89,7 +89,6 @@ export class SeederService {
 
   private async seedProducts() {
     const repository = this.dataSource.getRepository(Product);
-
     const checkMock = await this.mockRepository.findOne({
       where: {
         name: "products",

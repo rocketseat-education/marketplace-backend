@@ -1,181 +1,183 @@
 import { Brackets, Repository } from "typeorm";
-import { Transaction } from "../entities/Transaction";
-import { DtMoneyDataSource } from "../data-source";
-import {
-  CreateTranscationParams,
-  GetTransactionsParams,
-  TransactionRepositoryInterface,
-  TransactionTotalResponse,
-  UpdateTransactionParams,
-} from "../../../../../domain/transaction/repositoryInterface/transaction-repository.interface";
+
 import { DatabaseError } from "../../../../../shared/errors/database.error";
 import { Paginated } from "../../../../../interfaces/paginated";
 import { NotFoundError } from "../../../../../shared/errors/not-found.error";
+import { Product } from "../entities/Product";
+import {
+  CreateComment,
+  GetCommentsParams,
+  GetProductsParams,
+  ProductRepositoryInterface,
+  RateProduct,
+} from "../../../../../domain/product/interface/product-repository.interface";
+import { MarketPlaceDataSource } from "../data-source";
+import { Comment } from "../entities/Comment";
+import { Rating } from "../entities/Rating";
 
-export class TransactionRepository implements TransactionRepositoryInterface {
-  private transactionRepository: Repository<Transaction>;
+export class ProductRepository implements ProductRepositoryInterface {
+  private productRepository: Repository<Product>;
+  private commentRepository: Repository<Comment>;
+  private ratingRepository: Repository<Rating>;
 
   constructor() {
-    this.transactionRepository = DtMoneyDataSource.getRepository(Transaction);
+    this.productRepository = MarketPlaceDataSource.getRepository(Product);
+    this.commentRepository = MarketPlaceDataSource.getRepository(Comment);
+    this.ratingRepository = MarketPlaceDataSource.getRepository(Rating);
   }
-
-  async createTransaction(
-    params: CreateTranscationParams
-  ): Promise<Transaction> {
+  async createComment(comment: CreateComment): Promise<void> {
     try {
-      const transaction = await this.transactionRepository.save(params);
-      return transaction;
+      await this.commentRepository.save(comment);
     } catch (error) {
-      throw new DatabaseError("Falha ao criar transação", error);
+      throw new DatabaseError("Falha ao criar comentário");
     }
   }
 
-  async deleteTransaction(transactionId: number): Promise<void> {
+  async rateProdct({ productId, userId, value }: RateProduct): Promise<void> {
     try {
-      await this.transactionRepository.softDelete(transactionId);
-    } catch (error) {
-      throw new DatabaseError("Falha ao excluir a transação", error);
-    }
-  }
-
-  async findById(id: number): Promise<Transaction> {
-    try {
-      const transaction = await this.transactionRepository.findOne({
-        where: { id },
+      const userAlredyRate = await this.ratingRepository.findOne({
+        where: {
+          userId,
+          productId,
+        },
       });
 
-      if (!transaction) {
-        throw new NotFoundError(`Transação com ID ${id} não encontrada`);
-      }
+      await this.ratingRepository.save({
+        ...userAlredyRate,
+        value,
+        userId,
+        productId,
+      });
 
-      return transaction;
+      return;
     } catch (error) {
-      throw new DatabaseError("Falha ao buscar a transação por ID", error);
+      throw new DatabaseError("Falha ao avaliar produto");
     }
   }
 
-  async updateTransaction(params: UpdateTransactionParams): Promise<void> {
-    try {
-      await this.transactionRepository.save(params);
-    } catch (error) {
-      throw new DatabaseError("Falha ao atualizar a transação", error);
-    }
-  }
-
-  async getTransactionTotals({
-    userId,
-    filters,
-    searchText,
-  }: GetTransactionsParams): Promise<TransactionTotalResponse> {
-    try {
-      const query = this.transactionRepository
-        .createQueryBuilder("transaction")
-        .leftJoinAndSelect("transaction.type", "type")
-        .leftJoinAndSelect("transaction.category", "category")
-        .select([
-          "COALESCE(SUM(CASE WHEN transaction.typeId = 1 THEN transaction.value ELSE 0 END), 0) AS totalRevenue",
-          "COALESCE(SUM(CASE WHEN transaction.typeId = 2 THEN transaction.value ELSE 0 END), 0) AS totalExpense",
-          "COALESCE(SUM(CASE WHEN transaction.typeId = 1 THEN transaction.value ELSE 0 END), 0) - COALESCE(SUM(CASE WHEN transaction.typeId = 2 THEN transaction.value ELSE 0 END), 0) AS total",
-        ])
-        .where("transaction.userId = :userId", { userId });
-      if (filters?.from) {
-        query.andWhere("transaction.createdAt >= :from", {
-          from: filters.from,
-        });
-      }
-
-      if (filters?.to) {
-        query.andWhere("transaction.createdAt <= :to", {
-          to: filters.to,
-        });
-      }
-
-      if (filters?.categoryIds?.length) {
-        query.andWhere("category.id IN (:...categoryIds)", {
-          categoryIds: filters.categoryIds,
-        });
-      }
-
-      if (filters?.typeId) {
-        query.andWhere("transaction.typeId = :typeId", {
-          typeId: filters.typeId,
-        });
-      }
-
-      if (searchText) {
-        query.andWhere(
-          new Brackets((qb) => {
-            qb.orWhere("transaction.value LIKE :searchText", {
-              searchText: `%${searchText}%`,
-            })
-              .orWhere("type.name LIKE :searchText", {
-                searchText: `%${searchText}%`,
-              })
-              .orWhere("category.name LIKE :searchText", {
-                searchText: `%${searchText}%`,
-              })
-              .orWhere("transaction.description LIKE :searchText", {
-                searchText: `%${searchText}%`,
-              });
-          })
-        );
-      }
-
-      const result = await query.getRawOne();
-
-      return {
-        revenue: Number(result.totalRevenue),
-        expense: Number(result.totalExpense),
-        total: Number(result.total),
-      };
-    } catch (error) {
-      throw new DatabaseError("Falha ao calcular totais das transações", error);
-    }
-  }
-
-  async getTransactions({
-    userId,
+  async getComments({
+    productId,
     pagination,
-    filters,
-    searchText,
-    sort,
-  }: GetTransactionsParams): Promise<Paginated<Transaction>> {
+  }: GetCommentsParams): Promise<Paginated<Comment>> {
     try {
       let totalRows = 0;
       let totalPages = 0;
       let page = 0;
       let perPage = 0;
-      let transactions: Transaction[] = [];
+      let comments: Comment[] = [];
 
-      const query = this.transactionRepository
-        .createQueryBuilder("transaction")
-        .leftJoinAndSelect("transaction.type", "type")
-        .leftJoinAndSelect("transaction.category", "category");
+      const query = this.commentRepository
+        .createQueryBuilder("comment")
+        .leftJoinAndSelect("comment.user", "user")
+        .select([
+          "comment.content",
+          "comment.productId",
+          "comment.userId",
+          "comment.user",
+          "user.name",
+          "user.photo",
+          "user.email",
+        ]);
 
-      if (sort?.id) {
-        query.addOrderBy(
-          "transaction.id",
-          sort.id.toUpperCase() as "ASC" | "DESC"
-        );
+      query.where("comment.productId = :productId", { productId });
+
+      if (pagination) {
+        const skip = (pagination.page - 1) * pagination.perPage;
+        const take = pagination.perPage;
+
+        query.skip(skip).take(take);
+
+        const result = await query.getManyAndCount();
+
+        comments = result[0];
+        totalRows = result[1];
+        totalPages = Math.ceil(totalRows / pagination.perPage);
+        page = pagination.page;
+        perPage = pagination.perPage;
       } else {
-        query.addOrderBy("transaction.id", "DESC");
+        comments = await query.getMany();
+      }
+      return {
+        data: comments,
+        totalRows,
+        totalPages,
+        page,
+        perPage,
+      };
+    } catch (error) {
+      throw new DatabaseError("Falha ao buscar comentários do produto");
+    }
+  }
+
+  async findById(id: number): Promise<Product> {
+    try {
+      const transaction = await this.productRepository.findOne({
+        where: { id },
+      });
+
+      if (!transaction) {
+        throw new NotFoundError(`Produto com ID ${id} não encontrada`);
       }
 
-      query.where("transaction.userId = :userId", { userId });
+      return transaction;
+    } catch (error) {
+      throw new DatabaseError("Falha ao buscar o Produto por ID", error);
+    }
+  }
+
+  async getProducts({
+    productId,
+    pagination,
+    filters,
+    searchText,
+    sort,
+  }: GetProductsParams): Promise<Paginated<Product>> {
+    try {
+      let totalRows = 0;
+      let totalPages = 0;
+      let page = 0;
+      let perPage = 0;
+      let products: Product[] = [];
+
+      const query = this.productRepository
+        .createQueryBuilder("product")
+        .leftJoinAndSelect("product.category", "category")
+        .select([
+          "product.category",
+          "product.name",
+          "product.categoryId",
+          "product.value",
+          "product.photo",
+          "product.averageRating",
+          "product.createdAt",
+          "product.ratingCount",
+          "category.name",
+        ]);
+
+      query.where("product = :productId", { productId });
+
+      if (sort?.averageRating) {
+        query.addOrderBy(
+          "product.averageRating",
+          sort.averageRating.toUpperCase() as "ASC" | "DESC"
+        );
+      } else {
+        query.addOrderBy("product.createdAt", "DESC");
+      }
 
       if (searchText) {
         query.andWhere(
           new Brackets((qb) => {
-            qb.orWhere("transaction.value LIKE :searchText", {
+            qb.orWhere("product.value LIKE :searchText", {
               searchText: `%${searchText}%`,
             })
-              .orWhere("type.name LIKE :searchText", {
-                searchText: `%${searchText}%`,
-              })
               .orWhere("category.name LIKE :searchText", {
                 searchText: `%${searchText}%`,
               })
-              .orWhere("transaction.description LIKE :searchText", {
+              .orWhere("product.description LIKE :searchText", {
+                searchText: `%${searchText}%`,
+              })
+              .orWhere("product.value LIKE :searchText", {
                 searchText: `%${searchText}%`,
               });
           })
@@ -183,30 +185,24 @@ export class TransactionRepository implements TransactionRepositoryInterface {
       }
 
       if (filters?.from) {
-        query.andWhere("transaction.createdAt >= :from", {
+        query.andWhere("product.createdAt >= :from", {
           from: filters.from,
         });
       }
 
       if (filters?.to) {
-        query.andWhere("transaction.createdAt <= :to", {
+        query.andWhere("product.createdAt <= :to", {
           to: filters.to,
         });
       }
 
       if (filters?.to && !filters.from) {
-        query.andWhere("transaction.createdAt >= :to", { to: filters.to });
+        query.andWhere("product.createdAt >= :to", { to: filters.to });
       }
 
       if (filters?.categoryIds?.length) {
         query.andWhere("category.id IN (:...categoryIds)", {
           categoryIds: filters.categoryIds,
-        });
-      }
-
-      if (filters?.typeId) {
-        query.andWhere("type.id = :typeId", {
-          typeId: filters.typeId,
         });
       }
 
@@ -218,16 +214,16 @@ export class TransactionRepository implements TransactionRepositoryInterface {
 
         const result = await query.getManyAndCount();
 
-        transactions = result[0];
+        products = result[0];
         totalRows = result[1];
         totalPages = Math.ceil(totalRows / pagination.perPage);
         page = pagination.page;
         perPage = pagination.perPage;
       } else {
-        transactions = await query.getMany();
+        products = await query.getMany();
       }
       return {
-        data: transactions,
+        data: products,
         totalRows,
         totalPages,
         page,

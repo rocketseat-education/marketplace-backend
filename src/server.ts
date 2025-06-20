@@ -8,9 +8,18 @@ import * as Schema from "./infra/web/config/schema";
 import * as ErrorHandler from "./infra/web/config/error-handler";
 import fastifyStatic from "@fastify/static";
 import path = require("path");
+import multipart from "@fastify/multipart";
 
 (async () => {
   const app = fastify();
+
+  await app.register(multipart, {
+    limits: {
+      fileSize: 5 * 1024 * 1024, //
+      files: 1,
+    },
+    attachFieldsToBody: false,
+  });
 
   ErrorHandler.configure(app);
 

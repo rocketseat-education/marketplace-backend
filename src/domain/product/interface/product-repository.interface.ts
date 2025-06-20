@@ -4,6 +4,7 @@ import { OrderDirection } from "../../../interfaces/order-direction";
 import { Paginated } from "../../../interfaces/paginated";
 
 export interface GetProductsParams {
+  productId: number;
   pagination?: {
     page: number;
     perPage: number;
@@ -34,9 +35,9 @@ export interface GetCommentsParams {
 }
 
 export interface CreateComment {
-  userId: number;
   content: string;
-  productId: string;
+  userId: number;
+  productId: number;
 }
 
 export interface ProductRepositoryInterface {
@@ -44,5 +45,5 @@ export interface ProductRepositoryInterface {
   rateProdct(params: RateProduct): Promise<void>;
   findById(id: number): Promise<Product>;
   getComments(params: GetCommentsParams): Promise<Paginated<Comment>>;
-  createComments(params: CreateComment): Promise<void>;
+  createComment(params: CreateComment): Promise<void>;
 }

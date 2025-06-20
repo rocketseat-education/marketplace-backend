@@ -18,6 +18,9 @@ export class User {
   @Column({ name: "email", type: "varchar", nullable: false })
   email: string;
 
+  @Column({ name: "phone", type: "varchar", nullable: true })
+  phone?: string;
+
   @Column({ name: "photo", type: "varchar", nullable: false })
   photo: string;
 
