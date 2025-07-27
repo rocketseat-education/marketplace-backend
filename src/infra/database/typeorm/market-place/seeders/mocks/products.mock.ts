@@ -14,6 +14,7 @@ export const products: Product[] = [
     height: "23.5cm",
     width: "36.2cm",
     weight: "1.8kg",
+    views: 78,
   },
   {
     name: "Furadeira de Impacto Bosch 600W",
@@ -28,6 +29,7 @@ export const products: Product[] = [
     height: "25cm",
     width: "8cm",
     weight: "1.5kg",
+    views: 34,
   },
   {
     name: "Bola de Futebol Oficial FIFA",
@@ -42,6 +44,7 @@ export const products: Product[] = [
     height: "22cm",
     width: "22cm",
     weight: "450g",
+    views: 92,
   },
   {
     name: "Shampoo Pantene Hidratação Intensa 400ml",
@@ -56,6 +59,7 @@ export const products: Product[] = [
     height: "22cm",
     width: "6cm",
     weight: "450g",
+    views: 56,
   },
   {
     name: "Mesa de Jantar 6 Lugares Madeira",
@@ -70,6 +74,7 @@ export const products: Product[] = [
     height: "78cm",
     width: "160cm",
     weight: "45kg",
+    views: 12,
   },
   {
     name: "Kit Canetas Coloridas 12 Cores",
@@ -84,6 +89,7 @@ export const products: Product[] = [
     height: "15cm",
     width: "12cm",
     weight: "150g",
+    views: 87,
   },
   {
     name: "Liquidificador Arno Power Mix 1000W",
@@ -98,6 +104,7 @@ export const products: Product[] = [
     height: "42cm",
     width: "18cm",
     weight: "3.2kg",
+    views: 29,
   },
   {
     name: "Boneca Barbie Fashionista",
@@ -112,6 +119,7 @@ export const products: Product[] = [
     height: "30cm",
     width: "15cm",
     weight: "200g",
+    views: 99,
   },
   {
     name: "Chocolate Belga Premium 200g",
@@ -126,6 +134,7 @@ export const products: Product[] = [
     height: "12cm",
     width: "8cm",
     weight: "200g",
+    views: 65,
   },
   {
     name: "Bicicleta Aro 29 Mountain Bike",
@@ -140,6 +149,7 @@ export const products: Product[] = [
     height: "110cm",
     width: "180cm",
     weight: "14.5kg",
+    views: 41,
   },
   {
     name: "Conjunto de Talheres Inox 24 Peças",
@@ -154,6 +164,7 @@ export const products: Product[] = [
     height: "25cm",
     width: "35cm",
     weight: "1.8kg",
+    views: 18,
   },
   {
     name: "Kit Escova de Dentes Elétrica Oral-B",
@@ -168,6 +179,7 @@ export const products: Product[] = [
     height: "25cm",
     width: "12cm",
     weight: "380g",
+    views: 73,
   },
   {
     name: "Sofá 3 Lugares Tecido Cinza",
@@ -182,6 +194,7 @@ export const products: Product[] = [
     height: "90cm",
     width: "210cm",
     weight: "85kg",
+    views: 6,
   },
   {
     name: "Azeite Extra Virgem Português 500ml",
@@ -196,6 +209,7 @@ export const products: Product[] = [
     height: "25cm",
     width: "7cm",
     weight: "750g",
+    views: 81,
   },
   {
     name: "Carrinho Hot Wheels Pack 5 Unidades",
@@ -210,6 +224,7 @@ export const products: Product[] = [
     height: "12cm",
     width: "20cm",
     weight: "250g",
+    views: 95,
   },
   {
     name: "Câmera Digital Canon EOS Rebel T7i",
@@ -224,6 +239,7 @@ export const products: Product[] = [
     height: "10cm",
     width: "13cm",
     weight: "650g",
+    views: 20,
   },
   {
     name: "Tênis Esportivo Masculino Nike Air Max",
@@ -238,6 +254,7 @@ export const products: Product[] = [
     height: "12cm",
     width: "32cm",
     weight: "380g",
+    views: 55,
   },
   {
     name: "Máquina de Lavar Brastemp 12kg",
@@ -252,6 +269,7 @@ export const products: Product[] = [
     height: "105cm",
     width: "64cm",
     weight: "65kg",
+    views: 15,
   },
   {
     name: "Livro 'O Pequeno Príncipe' - Edição Especial",
@@ -266,6 +284,7 @@ export const products: Product[] = [
     height: "21cm",
     width: "14cm",
     weight: "320g",
+    views: 89,
   },
   {
     name: "Smart TV Samsung 50 polegadas 4K UHD",
@@ -280,6 +299,7 @@ export const products: Product[] = [
     height: "65cm",
     width: "112cm",
     weight: "13.5kg",
+    views: 30,
   },
   {
     name: "Calça Jeans Feminina Skinny",
@@ -294,6 +314,7 @@ export const products: Product[] = [
     height: "105cm",
     width: "32cm",
     weight: "450g",
+    views: 68,
   },
   {
     name: "Cafeteira Nespresso Essenza Mini",
@@ -308,6 +329,7 @@ export const products: Product[] = [
     height: "20.5cm",
     width: "11cm",
     weight: "2.3kg",
+    views: 22,
   },
   {
     name: "Protetor Solar Facial La Roche-Posay Anthelios Airlicium FPS 70",
@@ -322,6 +344,7 @@ export const products: Product[] = [
     height: "14cm",
     width: "4cm",
     weight: "60g",
+    views: 45,
   },
   {
     name: "Conjunto de Panelas Tramontina Antiaderente 5 Peças",
@@ -336,6 +359,7 @@ export const products: Product[] = [
     height: "35cm",
     width: "28cm",
     weight: "4.2kg",
+    views: 10,
   },
   {
     name: "Fone de Ouvido Bluetooth JBL Tune 500BT",
@@ -350,6 +374,7 @@ export const products: Product[] = [
     height: "18cm",
     width: "16cm",
     weight: "155g",
+    views: 79,
   },
   {
     name: "Barra de Proteína Probiótica Crisp Bar Cookies & Cream",
@@ -361,6 +386,7 @@ export const products: Product[] = [
     createdAt: new Date("2024-02-18T16:30:00Z"),
     averageRating: 0,
     ratingCount: 0,
+    views: 98,
   },
   {
     name: "Cadeira Gamer Pichau Gaming Omega",
@@ -372,6 +398,7 @@ export const products: Product[] = [
     createdAt: new Date("2024-03-07T10:45:00Z"),
     averageRating: 0,
     ratingCount: 0,
+    views: 7,
   },
   {
     name: "Batedeira Planetária Britânia Prime",
@@ -383,6 +410,7 @@ export const products: Product[] = [
     createdAt: new Date("2024-03-14T11:00:00Z"),
     averageRating: 0,
     ratingCount: 0,
+    views: 25,
   },
   {
     name: "Mochila Escolar Infantil Patrulha Canina",
@@ -394,6 +422,7 @@ export const products: Product[] = [
     createdAt: new Date("2024-02-16T10:00:00Z"),
     averageRating: 0,
     ratingCount: 0,
+    views: 91,
   },
   {
     name: "Kit Ferramentas Tramontina 10 Peças",
@@ -405,6 +434,7 @@ export const products: Product[] = [
     createdAt: new Date("2024-03-06T13:00:00Z"),
     averageRating: 0,
     ratingCount: 0,
+    views: 38,
   },
   {
     name: "Jogo de Tabuleiro Dixit Odyssey",
@@ -416,6 +446,7 @@ export const products: Product[] = [
     createdAt: new Date("2024-02-27T17:00:00Z"),
     averageRating: 0,
     ratingCount: 0,
+    views: 84,
   },
   {
     name: "Vinho Tinto Chileno Concha y Toro Cabernet Sauvignon",
@@ -427,6 +458,7 @@ export const products: Product[] = [
     createdAt: new Date("2024-03-11T16:00:00Z"),
     averageRating: 0,
     ratingCount: 0,
+    views: 71,
   },
   {
     name: "Conjunto de Jardineira Infantil Unicórnio",
@@ -438,6 +470,7 @@ export const products: Product[] = [
     createdAt: new Date("2024-02-29T09:00:00Z"),
     averageRating: 0,
     ratingCount: 0,
+    views: 60,
   },
   {
     name: "Barbeador Elétrico Philips AquaTouch S3000",
@@ -449,6 +482,7 @@ export const products: Product[] = [
     createdAt: new Date("2024-03-09T14:00:00Z"),
     averageRating: 0,
     ratingCount: 0,
+    views: 49,
   },
   {
     name: "Cama Box Casal Ortobom com Molas Ensacadas",
@@ -460,6 +494,7 @@ export const products: Product[] = [
     createdAt: new Date("2024-03-04T10:30:00Z"),
     averageRating: 0,
     ratingCount: 0,
+    views: 9,
   },
   {
     name: "Copo Térmico Stanley Quencher H2.0 FlowState 40oz",
@@ -471,6 +506,7 @@ export const products: Product[] = [
     createdAt: new Date("2024-03-15T09:00:00Z"),
     averageRating: 0,
     ratingCount: 0,
+    views: 28,
   },
   {
     name: "Livro 'Mindset: A Nova Psicologia do Sucesso'",
@@ -482,6 +518,7 @@ export const products: Product[] = [
     createdAt: new Date("2024-03-13T12:00:00Z"),
     averageRating: 0,
     ratingCount: 0,
+    views: 86,
   },
   {
     name: "Piscina Inflável Infantil Intex 1000 Litros",
@@ -493,6 +530,7 @@ export const products: Product[] = [
     createdAt: new Date("2024-03-16T15:00:00Z"),
     averageRating: 0,
     ratingCount: 0,
+    views: 43,
   },
   {
     name: "Robô Aspirador de Pó iRobot Roomba 675",
@@ -504,6 +542,7 @@ export const products: Product[] = [
     createdAt: new Date("2024-03-18T10:00:00Z"),
     averageRating: 0,
     ratingCount: 0,
+    views: 19,
   },
   {
     name: "Relógio Smartwatch Xiaomi Mi Band 7",
@@ -515,6 +554,7 @@ export const products: Product[] = [
     createdAt: new Date("2024-03-20T11:30:00Z"),
     averageRating: 0,
     ratingCount: 0,
+    views: 75,
   },
   {
     name: "Serum Facial Vitamina C O Boticário",
@@ -522,163 +562,10 @@ export const products: Product[] = [
       "Serum facial de Vitamina C O Boticário, com alta concentração de vitamina C pura para iluminação, uniformização do tom da pele e redução de linhas finas. Fórmula antioxidante que protege contra os radicais livres e estimula a produção de colágeno. Textura leve e de rápida absorção. Ideal para todos os tipos de pele. Uso diário para uma pele mais radiante e jovem.",
     categoryId: 4,
     photo: "http://localhost:3001/assets/images/serum-vitamina-c.jpg",
-    value: "89,99",
-    createdAt: new Date("2024-03-17T14:00:00Z"),
+    value: "69.90",
+    createdAt: new Date("2024-03-21T09:00:00Z"),
     averageRating: 0,
     ratingCount: 0,
-  },
-  {
-    name: "Aspirador de Pó Vertical Britânia Dust Off Turbo",
-    description:
-      "Aspirador de pó vertical Britânia Dust Off Turbo com 1000W de potência, ideal para limpeza rápida e eficiente de pisos, carpetes e estofados. Design 2 em 1, pode ser usado como aspirador vertical ou portátil. Reservatório de pó lavável e removível. Cabo elétrico longo para maior alcance. Filtro HEPA que retém ácaros e alérgenos. Leve e fácil de manusear.",
-    categoryId: 2,
-    photo: "http://localhost:3001/assets/images/aspirador-vertical.jpg",
-    value: "149,80",
-    createdAt: new Date("2024-03-22T10:00:00Z"),
-    averageRating: 0,
-    ratingCount: 0,
-  },
-  {
-    name: "Caixa de Som Portátil JBL Flip 6",
-    description:
-      "Caixa de som portátil JBL Flip 6 com som potente e graves profundos. Design robusto e à prova d'água e poeira (IP67). Conectividade Bluetooth 5.1. Até 12 horas de reprodução com uma única carga. Função PartyBoost para conectar várias caixas JBL compatíveis. Ideal para festas, praia, piscina e uso diário. Compacta e fácil de transportar.",
-    categoryId: 7,
-    photo: "http://localhost:3001/assets/images/jbl-flip-6.jpg",
-    value: "449,99",
-    createdAt: new Date("2024-03-24T16:00:00Z"),
-    averageRating: 0,
-    ratingCount: 0,
-  },
-  {
-    name: "Frigobar Consul 80 Litros Branco",
-    description:
-      "Frigobar Consul de 80 litros na cor branca, compacto e eficiente, ideal para quartos, escritórios e áreas de lazer. Economia de energia com classificação A. Compartimento de congelamento rápido. Prateleiras removíveis e porta-latas na porta. Baixo nível de ruído. Design clean e funcional, adapta-se a diferentes ambientes. Termostato regulável.",
-    categoryId: 2,
-    photo: "http://localhost:3001/assets/images/frigobar-consul.jpg",
-    value: "569,90",
-    createdAt: new Date("2024-03-26T11:00:00Z"),
-    averageRating: 0,
-    ratingCount: 0,
-  },
-  {
-    name: "Jogo de Cama Casal 100% Algodão 4 Peças",
-    description:
-      "Jogo de cama casal 100% algodão, 200 fios, super macio e confortável. Inclui 1 lençol de cima, 1 lençol com elástico e 2 fronhas. Toque suave e respirável, ideal para todas as estações do ano. Cores e estampas variadas para combinar com a decoração do quarto. Fácil de lavar e passar, alta durabilidade. Proporciona noites de sono agradáveis.",
-    categoryId: 6,
-    photo: "http://localhost:3001/assets/images/jogo-cama-algodao.jpg",
-    value: "129,75",
-    createdAt: new Date("2024-03-19T13:00:00Z"),
-    averageRating: 0,
-    ratingCount: 0,
-  },
-  {
-    name: "Tênis Infantil Adidas Grand Court",
-    description:
-      "Tênis infantil Adidas Grand Court, inspirado nos clássicos tênis de tênis. Confeccionado em material sintético resistente, com fecho de velcro para facilitar o calce e o ajuste. Solado de borracha para aderência e durabilidade. Design clássico com as três listras da Adidas. Ideal para o dia a dia e atividades escolares, proporcionando conforto e estilo para as crianças.",
-    categoryId: 3,
-    photo: "http://localhost:3001/assets/images/tenis-adidas-infantil.jpg",
-    value: "139,90",
-    createdAt: new Date("2024-03-21T10:00:00Z"),
-    averageRating: 0,
-    ratingCount: 0,
-  },
-  {
-    name: "Máquina de Costura Singer Facilita Pro 4423",
-    description:
-      "Máquina de costura Singer Facilita Pro 4423, robusta e rápida, ideal para uso doméstico e projetos mais exigentes. 23 pontos (básicos, decorativos e elásticos). Passador de linha na agulha automático. Estrutura interna de metal. Braço livre para costuras tubulares. Velocidade de até 1.100 pontos por minuto. Inclui acessórios básicos e DVD de instruções. Perfeita para iniciantes e costureiros experientes.",
-    categoryId: 10,
-    photo: "http://localhost:3001/assets/images/maquina-costura.jpg",
-    value: "899,00",
-    createdAt: new Date("2024-03-23T14:00:00Z"),
-    averageRating: 0,
-    ratingCount: 0,
-  },
-  {
-    name: "Cereal Matinal Sucrilhos Kellogg's 500g",
-    description:
-      "Cereal matinal Sucrilhos Kellogg's de 500g, flocos de milho crocantes e saborosos, enriquecidos com vitaminas e ferro. Ideal para um café da manhã nutritivo e energético. Pode ser consumido com leite, iogurte ou frutas. Fonte de carboidratos e fibras. Opção rápida e prática para toda a família. Embalagem resselável para manter a crocância.",
-    categoryId: 9,
-    photo: "http://localhost:3001/assets/images/sucrilhos-kelloggs.jpg",
-    value: "14,99",
-    createdAt: new Date("2024-03-25T09:45:00Z"),
-    averageRating: 0,
-    ratingCount: 0,
-  },
-  {
-    name: "Patinete Elétrico Xiaomi Mi Electric Scooter 3",
-    description:
-      "Patinete elétrico Xiaomi Mi Electric Scooter 3, ideal para mobilidade urbana. Velocidade máxima de 25 km/h, autonomia de até 30 km. Design dobrável para fácil transporte e armazenamento. Sistema de freio duplo para segurança. Display integrado com informações de velocidade e bateria. Conectividade com aplicativo Mi Home para mais recursos. Leve e potente.",
-    categoryId: 8,
-    photo: "http://localhost:3001/assets/images/patinete-xiaomi.jpg",
-    value: "1.899,50",
-    createdAt: new Date("2024-03-27T15:30:00Z"),
-    averageRating: 0,
-    ratingCount: 0,
-  },
-  {
-    name: "Boneco Funko Pop! Marvel Homem-Aranha",
-    description:
-      "Boneco colecionável Funko Pop! do Homem-Aranha (Spider-Man) da Marvel. Fabricado em vinil de alta qualidade, com cerca de 9,5 cm de altura. Design estilizado e divertido, ideal para fãs de quadrinhos, filmes e colecionadores. Perfeito para decorar mesas, estantes e prateleiras. Vem em caixa com janela para exibição.",
-    categoryId: 1,
-    photo: "http://localhost:3001/assets/images/funko-pop-spider.jpg",
-    value: "79,99",
-    createdAt: new Date("2024-03-28T10:00:00Z"),
-    averageRating: 0,
-    ratingCount: 0,
-  },
-  {
-    name: "Mesa de Escritório Kappesberg 120cm",
-    description:
-      "Mesa de escritório Kappesberg com 120cm de largura, ideal para home office ou ambientes de estudo. Confeccionada em MDP com acabamento em BP, resistente a riscos e umidade. Design clean e moderno, com duas gavetas e nicho para organização. Pés metálicos para maior estabilidade. Cor branca, fácil de combinar com qualquer decoração.",
-    categoryId: 6,
-    photo: "http://localhost:3001/assets/images/mesa-escritorio.jpg",
-    value: "299,90",
-    createdAt: new Date("2024-03-29T11:00:00Z"),
-    averageRating: 0,
-    ratingCount: 0,
-  },
-  {
-    name: "Controle sem fio Xbox Series X|S Carbon Black",
-    description:
-      "Controle sem fio oficial Xbox Series X|S na cor Carbon Black. Design ergonômico, gatilhos texturizados e botões responsivos. Conectividade Bluetooth para jogar em consoles Xbox, PCs e dispositivos móveis. Botão Compartilhar dedicado para capturar e compartilhar conteúdo. Bateria com autonomia de até 40 horas. Ideal para gamers que buscam precisão e conforto.",
-    categoryId: 7,
-    photo: "http://localhost:3001/assets/images/controle-xbox.jpg",
-    value: "299,99",
-    createdAt: new Date("2024-03-30T14:00:00Z"),
-    averageRating: 0,
-    ratingCount: 0,
-  },
-  {
-    name: "Carrinho de Bebê Burigotto Rio K",
-    description:
-      "Carrinho de bebê Burigotto Rio K, prático e funcional para o dia a dia. Estrutura em alumínio leve e resistente. Cinto de segurança de 5 pontos, encosto reclinável em várias posições, capota retrátil e removível com visor. Cesto porta-objetos. Fechamento compacto com uma mão. Ideal para bebês desde o nascimento até 15 kg. Rodas dianteiras giratórias com trava.",
-    categoryId: 1,
-    photo: "http://localhost:3001/assets/images/carrinho-burigotto.jpg",
-    value: "389,75",
-    createdAt: new Date("2024-03-31T10:30:00Z"),
-    averageRating: 0,
-    ratingCount: 0,
-  },
-  {
-    name: "Chocolate Lindt Excellence 85% Cacau 100g",
-    description:
-      "Chocolate Lindt Excellence 85% Cacau de 100g, chocolate amargo intenso e sofisticado. Elaborado com grãos de cacau cuidadosamente selecionados, oferece um sabor profundo e notas aromáticas complexas. Textura suave e cremosa que derrete na boca. Ideal para os apreciadores de chocolate amargo de alta qualidade e para harmonização. Embalagem premium.",
-    categoryId: 9,
-    photo: "http://localhost:3001/assets/images/chocolate-lindt.jpg",
-    value: "26,90",
-    createdAt: new Date("2024-04-01T12:00:00Z"),
-    averageRating: 0,
-    ratingCount: 0,
-  },
-  {
-    name: "Tábua de Passar Roupa Dobrável",
-    description:
-      "Tábua de passar roupa dobrável com estrutura em aço resistente e tampo em madeira. Capa de algodão com espuma para um passar mais eficiente. Altura ajustável em várias posições. Pés antiderrapantes para maior estabilidade. Fácil de guardar e transportar, ideal para pequenos espaços. Design compacto e funcional para otimizar a tarefa de passar roupas.",
-    categoryId: 2,
-    photo: "http://localhost:3001/assets/images/tabua-passar.jpg",
-    value: "79,50",
-    createdAt: new Date("2024-04-02T09:00:00Z"),
-    averageRating: 0,
-    ratingCount: 0,
+    views: 52,
   },
 ];

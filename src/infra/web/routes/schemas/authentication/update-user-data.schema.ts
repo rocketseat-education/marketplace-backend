@@ -5,7 +5,7 @@ const body = S.object()
   .prop("name", S.string().required().examples(["Novo nome"]))
   .prop("email", S.string().required().examples(["novo_teste@gmail.com"]))
   .prop("phone", S.string().required().examples(["11111111111"]))
-  .prop("password", S.string().required().examples(["123123123"]))
+  .prop("password", S.string().examples(["123123123"]))
   .prop("newPassword", S.string().examples(["123456789"]));
 
 const successResponse = S.object().prop("user", S.ref("User#"));

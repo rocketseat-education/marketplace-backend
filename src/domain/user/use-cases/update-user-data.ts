@@ -13,14 +13,17 @@ export class UpdateUserDataUseCase {
     this.userRepository = new UserTypeormRepository();
   }
 
-  async execute(userData: Partial<UpdateUserParams>): Promise<User> {
-    const userExist = await this.userRepository.findByEmail(userData.email);
+  async execute(
+    userData: Partial<UpdateUserParams>,
+    email: string
+  ): Promise<User> {
+    const userExist = await this.userRepository.findByEmail(email);
 
     if (!userExist) {
       throw new NotFoundError("Usuário não encontrado");
     }
 
-    if (userData.password && userData.newPassword) {
+    if (userData?.password && userData?.newPassword) {
       const { password, newPassword } = userData;
 
       const checkPassword = await compare(password, userExist.password);
@@ -31,10 +34,12 @@ export class UpdateUserDataUseCase {
 
       const encryptedPassword = hashSync(newPassword, 10);
       userData.password = encryptedPassword;
+    } else {
+      userData.password = userExist.password;
     }
 
     delete userData.newPassword;
-
+    console.log(userData);
     const user = await this.userRepository.updateUserData(userData);
 
     delete user.password;

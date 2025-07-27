@@ -9,10 +9,12 @@ import { GetCommentsController } from "../controllers/product/get-comments.contr
 import {
   createCommentSchema,
   findProductByIdSchema,
+  getCategoriesSchema,
   getCommentsSchema,
   getProductsSchema,
   rateProductSchema,
 } from "./schemas/product/products.chemas";
+import { FindProductCategoriesByIdController } from "../controllers/product/find-product-categories.controller";
 
 export const configure = (fastify: FastifyInstance) => {
   const getProductsController = new GetProductsController();
@@ -21,6 +23,8 @@ export const configure = (fastify: FastifyInstance) => {
   const getCommentsController = new GetCommentsController();
   const createCommentController = new CreateCommentController();
   const checkAuthenticated = new CheckAuthtenticationMiddleware();
+  const findProductCategoriesByIdController =
+    new FindProductCategoriesByIdController();
 
   fastify.route({
     url: "/products",
@@ -44,6 +48,14 @@ export const configure = (fastify: FastifyInstance) => {
     handler: findProductByIdController.execute,
     preHandler: [checkAuthenticated.execute],
     schema: findProductByIdSchema,
+  });
+
+  fastify.route({
+    url: "/products/categories",
+    method: "get",
+    handler: findProductCategoriesByIdController.execute,
+    preHandler: [checkAuthenticated.execute],
+    schema: getCategoriesSchema,
   });
 
   fastify.route({

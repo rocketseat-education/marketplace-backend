@@ -142,3 +142,13 @@ export const createCommentSchema: FastifySchema = {
     },
   },
 };
+
+export const getCategoriesSchema: FastifySchema = {
+  tags: ["Products"],
+  security: [{ bearerAuth: [] }],
+  response: {
+    200: S.array().items(S.ref("Category#")),
+    401: { $ref: "Unauthorized#" },
+    500: { $ref: "ServerError#" },
+  },
+};

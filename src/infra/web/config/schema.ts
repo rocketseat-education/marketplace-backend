@@ -89,6 +89,7 @@ export const configure = (fastify: FastifyInstance) => {
     .prop("width", S.string())
     .prop("weight", S.string())
     .prop("averageRating", S.number())
+    .prop("views", S.number())
     .prop("ratingCount", S.number())
     .prop("categoryId", S.number().required())
     .prop(

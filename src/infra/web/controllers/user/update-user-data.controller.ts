@@ -14,10 +14,11 @@ export class UpdateUserDataController {
     reply: FastifyReply
   ) => {
     const userData = request.body;
+    const email = request.user.email;
     userData.email = userData.email.toLowerCase();
 
-    const user = await this.updateUserDataUseCase.execute(userData);
-
-    reply.send(user);
+    const user = await this.updateUserDataUseCase.execute(userData, email);
+    console.log(user);
+    reply.send({ user });
   };
 }

@@ -15,7 +15,6 @@ export class FindProductByIdController {
     const productId = parseInt(request.params.id);
 
     const product = await this.findProductLogic.execute(productId);
-
     reply.send(product);
   };
 }
