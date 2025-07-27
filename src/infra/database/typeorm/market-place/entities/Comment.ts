@@ -14,7 +14,7 @@ import { Product } from "./Product";
 @Entity("comments")
 export class Comment {
   @PrimaryGeneratedColumn()
-  id: number;
+  id?: number;
 
   @Column({ name: "content", type: "varchar", nullable: false })
   content: string;

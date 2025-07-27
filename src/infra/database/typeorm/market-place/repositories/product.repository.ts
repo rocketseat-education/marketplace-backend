@@ -8,6 +8,7 @@ import {
   CreateComment,
   GetCommentsParams,
   GetProductsParams,
+  GetUserRating,
   ProductRepositoryInterface,
   RateProduct,
 } from "../../../../../domain/product/interface/product-repository.interface";
@@ -25,11 +26,26 @@ export class ProductRepository implements ProductRepositoryInterface {
     this.commentRepository = MarketPlaceDataSource.getRepository(Comment);
     this.ratingRepository = MarketPlaceDataSource.getRepository(Rating);
   }
+
+  async findUserRating({ productId, userId }: GetUserRating): Promise<Rating> {
+    try {
+      const rating = await this.ratingRepository.findOne({
+        where: {
+          productId,
+          userId,
+        },
+      });
+      return rating;
+    } catch (error) {
+      throw new DatabaseError("Falha ao criar comentário", error);
+    }
+  }
+
   async createComment(comment: CreateComment): Promise<void> {
     try {
       await this.commentRepository.save(comment);
     } catch (error) {
-      throw new DatabaseError("Falha ao criar comentário");
+      throw new DatabaseError("Falha ao criar comentário", error);
     }
   }
 
@@ -42,16 +58,38 @@ export class ProductRepository implements ProductRepositoryInterface {
         },
       });
 
-      await this.ratingRepository.save({
+      const ratingCreated = await this.ratingRepository.save({
         ...userAlredyRate,
         value,
         userId,
         productId,
       });
 
-      return;
+      console.log(ratingCreated);
+
+      const ratings = await this.ratingRepository.find({
+        where: {
+          productId,
+        },
+      });
+
+      const total = ratings.reduce((sum, curr) => sum + curr.value, 0);
+
+      const avg = ratings.length > 0 ? total / ratings.length : 0;
+      const averageRating = parseFloat(avg.toFixed(1));
+      console.log({
+        averageRating,
+        ratingCount: ratings.length,
+      });
+      await this.productRepository.update(
+        { id: productId },
+        {
+          averageRating,
+          ratingCount: ratings.length,
+        }
+      );
     } catch (error) {
-      throw new DatabaseError("Falha ao avaliar produto");
+      throw new DatabaseError("Falha ao avaliar produto", error);
     }
   }
 
@@ -69,15 +107,27 @@ export class ProductRepository implements ProductRepositoryInterface {
       const query = this.commentRepository
         .createQueryBuilder("comment")
         .leftJoinAndSelect("comment.user", "user")
+        .leftJoinAndSelect("user.avatar", "avatar")
+        .leftJoinAndSelect(
+          "user.ratings",
+          "ratings",
+          "ratings.productId = :productId"
+        )
         .select([
+          "comment.id",
           "comment.content",
           "comment.productId",
-          "comment.userId",
-          "comment.user",
+          "comment.createdAt",
+          "user.id",
           "user.name",
-          "user.photo",
           "user.email",
-        ]);
+          "ratings.id",
+          "ratings.value",
+          "ratings.productId",
+          "ratings.userId",
+          "avatar.url",
+        ])
+        .where("comment.productId = :productId", { productId });
 
       query.where("comment.productId = :productId", { productId });
 
@@ -97,6 +147,7 @@ export class ProductRepository implements ProductRepositoryInterface {
       } else {
         comments = await query.getMany();
       }
+
       return {
         data: comments,
         totalRows,
@@ -105,7 +156,7 @@ export class ProductRepository implements ProductRepositoryInterface {
         perPage,
       };
     } catch (error) {
-      throw new DatabaseError("Falha ao buscar comentários do produto");
+      throw new DatabaseError("Falha ao buscar comentários do produto", error);
     }
   }
 
@@ -113,6 +164,7 @@ export class ProductRepository implements ProductRepositoryInterface {
     try {
       const transaction = await this.productRepository.findOne({
         where: { id },
+        relations: ["category"],
       });
 
       if (!transaction) {
@@ -126,10 +178,8 @@ export class ProductRepository implements ProductRepositoryInterface {
   }
 
   async getProducts({
-    productId,
     pagination,
     filters,
-    searchText,
     sort,
   }: GetProductsParams): Promise<Paginated<Product>> {
     try {
@@ -143,18 +193,17 @@ export class ProductRepository implements ProductRepositoryInterface {
         .createQueryBuilder("product")
         .leftJoinAndSelect("product.category", "category")
         .select([
-          "product.category",
+          "product.id",
           "product.name",
           "product.categoryId",
           "product.value",
-          "product.photo",
           "product.averageRating",
           "product.createdAt",
           "product.ratingCount",
+          "product.photo",
+          "category.id",
           "category.name",
         ]);
-
-      query.where("product = :productId", { productId });
 
       if (sort?.averageRating) {
         query.addOrderBy(
@@ -165,20 +214,20 @@ export class ProductRepository implements ProductRepositoryInterface {
         query.addOrderBy("product.createdAt", "DESC");
       }
 
-      if (searchText) {
+      if (filters?.searchText) {
         query.andWhere(
           new Brackets((qb) => {
-            qb.orWhere("product.value LIKE :searchText", {
-              searchText: `%${searchText}%`,
+            qb.orWhere("product.name LIKE :searchText", {
+              searchText: `%${filters.searchText}%`,
             })
               .orWhere("category.name LIKE :searchText", {
-                searchText: `%${searchText}%`,
+                searchText: `%${filters.searchText}%`,
               })
               .orWhere("product.description LIKE :searchText", {
-                searchText: `%${searchText}%`,
+                searchText: `%${filters.searchText}%`,
               })
-              .orWhere("product.value LIKE :searchText", {
-                searchText: `%${searchText}%`,
+              .orWhere("CAST(product.value AS TEXT) LIKE :searchText", {
+                searchText: `%${filters.searchText}%`,
               });
           })
         );
@@ -199,9 +248,8 @@ export class ProductRepository implements ProductRepositoryInterface {
       if (filters?.to && !filters.from) {
         query.andWhere("product.createdAt >= :to", { to: filters.to });
       }
-
       if (filters?.categoryIds?.length) {
-        query.andWhere("category.id IN (:...categoryIds)", {
+        query.andWhere("product.categoryId IN (:...categoryIds)", {
           categoryIds: filters.categoryIds,
         });
       }
@@ -222,6 +270,7 @@ export class ProductRepository implements ProductRepositoryInterface {
       } else {
         products = await query.getMany();
       }
+
       return {
         data: products,
         totalRows,
@@ -230,7 +279,7 @@ export class ProductRepository implements ProductRepositoryInterface {
         perPage,
       };
     } catch (error) {
-      throw new DatabaseError("Falha ao buscar transações finançeiras", error);
+      throw new DatabaseError("Falha ao buscar produtos", error);
     }
   }
 }

@@ -4,6 +4,7 @@
          "es5",
          "es6"
       ],
+      "esModuleInterop": true,
       "target": "es5",
       "module": "commonjs",
       "moduleResolution": "node",

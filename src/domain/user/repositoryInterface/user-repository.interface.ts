@@ -1,4 +1,6 @@
 import { User } from "../../../infra/database/typeorm/market-place/entities/User";
+import { UserAvatar } from "../../../infra/database/typeorm/market-place/entities/UserAvatar";
+import { CreditCard } from "../../../infra/database/typeorm/market-place/entities/CreditCard";
 
 export interface CreateUserParams {
   name: string;
@@ -16,9 +18,33 @@ export interface UploadProfiePhotoParams {
   url: string;
 }
 
+export interface UpdateAvatarUrlParams {
+  userId: number;
+  url: number;
+}
+
+export interface CreateCreditCardParams {
+  userId: number;
+  titularName: string;
+  number: string;
+  CVV: number;
+  value: number;
+  expirationDate: Date;
+}
+
+export interface UpdateCreditCardParams
+  extends Partial<CreateCreditCardParams> {
+  id: number;
+}
+
 export interface UserRepositoryInterface {
   createUser(user: CreateUserParams): Promise<User>;
   findByEmail(email: string): Promise<User>;
-  uploadProfilePhoto(params: UploadProfiePhotoParams): Promise<string>;
+  updateUserAvatar(params: UploadProfiePhotoParams): Promise<string>;
   updateUserData(params: Partial<CreateUserParams>): Promise<User>;
+  createCreditCard(creditCard: CreateCreditCardParams): Promise<CreditCard>;
+  findCreditCardsByUserId(userId: number): Promise<CreditCard[]>;
+  findCreditCardById(id: number): Promise<CreditCard>;
+  updateCreditCard(params: UpdateCreditCardParams): Promise<CreditCard>;
+  deleteCreditCard(id: number): Promise<void>;
 }

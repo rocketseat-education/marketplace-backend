@@ -13,7 +13,7 @@ import { Product } from "./Product";
 @Entity("products_rating")
 export class Rating {
   @PrimaryGeneratedColumn()
-  id: number;
+  id?: number;
 
   @Column({ name: "user_id", type: "int", nullable: false })
   userId: number;
@@ -30,7 +30,7 @@ export class Rating {
   @UpdateDateColumn({ name: "updated_at", type: "datetime" })
   updatedAt: Date;
 
-  @ManyToOne(() => User)
+  @ManyToOne(() => User, (user) => user.ratings)
   @JoinColumn({ name: "user_id" })
   user?: User;
 

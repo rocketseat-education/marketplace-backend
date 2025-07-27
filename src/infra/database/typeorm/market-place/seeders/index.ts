@@ -10,6 +10,8 @@ import { Mock } from "../entities/Mocks";
 import { Rating } from "../entities/Rating";
 import { Comment } from "../entities/Comment";
 import { ratings } from "./mocks/ratings.mock";
+import { UserAvatar } from "../entities/UserAvatar";
+import { userAvatarsMock } from "./mocks/user-avatars.mock";
 
 export class SeederService {
   private mockRepository: Repository<Mock>;
@@ -122,7 +124,14 @@ export class SeederService {
           name: "users",
         }),
       ]);
-      console.info("Usuários criados com sucesso!");
+
+      const userAvatarRepository = await this.dataSource.getRepository(
+        UserAvatar
+      );
+
+      await userAvatarRepository.save(userAvatarsMock);
+
+      await console.info("Usuários criados com sucesso!");
     }
   }
 

@@ -6,11 +6,14 @@ import { loginSchema } from "./schemas/authentication/login.schema";
 import { UpdateUserDataController } from "../controllers/user/update-user-data.controller";
 import { updateUserDataSchema } from "./schemas/authentication/update-user-data.schema";
 import { CheckAuthtenticationMiddleware } from "../middlewares/check-authentication";
+import { uploadUserAvatarSchema } from "./schemas/authentication/upload-user-avatar.schema";
+import { UploadUserAvatarController } from "../controllers/user/upload-user-avatar.controller";
 
 export const configure = (fastify: FastifyInstance) => {
   const authenticateController = new AuthenticateController();
   const registerController = new RegisterController();
   const updateUserData = new UpdateUserDataController();
+  const uploadImageController = new UploadUserAvatarController();
   const checkAuthenticated = new CheckAuthtenticationMiddleware();
 
   fastify.route({
@@ -36,10 +39,10 @@ export const configure = (fastify: FastifyInstance) => {
   });
 
   fastify.route({
-    url: "/user",
-    method: "put",
-    handler: updateUserData.execute,
+    url: "/user/avatar",
+    method: "post",
+    handler: uploadImageController.execute,
     preHandler: [checkAuthenticated.execute],
-    schema: updateUserDataSchema,
+    schema: uploadUserAvatarSchema,
   });
 };

@@ -34,6 +34,26 @@ export class CreateProductsTable1750113427674 implements MigrationInterface {
             isNullable: false,
           },
           {
+            name: "width",
+            type: "varchar",
+            isNullable: true,
+          },
+          {
+            name: "weight",
+            type: "varchar",
+            isNullable: true,
+          },
+          {
+            name: "height",
+            type: "varchar",
+            isNullable: true,
+          },
+          {
+            name: "views",
+            type: "integer",
+            isNullable: true,
+          },
+          {
             name: "average_rating",
             type: "float",
             isNullable: false,

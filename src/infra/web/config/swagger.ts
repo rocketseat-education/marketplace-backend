@@ -6,7 +6,7 @@ export const configure = async (fastify: FastifyInstance) => {
   await fastify.register(swagger, {
     openapi: {
       info: {
-        title: "DT-money-backend",
+        title: "market-place",
         version: "1.0.0",
       },
       components: {

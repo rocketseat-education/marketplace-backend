@@ -2,15 +2,20 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
+import { Rating } from "./Rating";
 import { Comment } from "./Comment";
+import { UserAvatar } from "./UserAvatar";
+import { CreditCard } from "./CreditCard";
 
 @Entity("users")
 export class User {
   @PrimaryGeneratedColumn()
-  id: number;
+  id?: number;
 
   @Column({ name: "name", type: "varchar", nullable: false })
   name: string;
@@ -20,9 +25,6 @@ export class User {
 
   @Column({ name: "phone", type: "varchar", nullable: true })
   phone?: string;
-
-  @Column({ name: "photo", type: "varchar", nullable: false })
-  photo: string;
 
   @Column({ name: "password", type: "varchar", nullable: false })
   password: string;
@@ -34,6 +36,15 @@ export class User {
   })
   createdAt: Date;
 
+  @OneToMany(() => Rating, (rating) => rating.user)
+  ratings?: Rating[];
+
   @OneToMany(() => Comment, (comment) => comment.user)
   comments?: Comment[];
+
+  @OneToMany(() => CreditCard, (creditCard) => creditCard.user)
+  creditCards?: CreditCard[];
+
+  @OneToOne(() => UserAvatar, (userAvatar) => userAvatar.user)
+  avatar?: UserAvatar;
 }

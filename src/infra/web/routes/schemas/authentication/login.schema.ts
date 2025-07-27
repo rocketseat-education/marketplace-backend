@@ -2,8 +2,8 @@ import { FastifySchema } from "fastify";
 import S from "fluent-json-schema";
 
 const body = S.object()
-  .prop("email", S.string().required())
-  .prop("password", S.string().required());
+  .prop("email", S.string().required().examples(["teste@gmail.com"]))
+  .prop("password", S.string().required().examples(["123123123"]));
 
 const successResponse = S.object()
   .prop("user", S.ref("User#"))

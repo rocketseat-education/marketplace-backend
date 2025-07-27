@@ -37,29 +37,41 @@ export const configure = (fastify: FastifyInstance) => {
     .prop("id", S.number())
     .prop("name", S.string())
     .prop("email", S.string())
-    .prop("url", S.oneOf([S.string(), S.null()]))
-    .prop("photo", S.oneOf([S.string(), S.null()]))
+    .prop("avatarUrl", S.oneOf([S.string(), S.null()]))
+    .prop("phone", S.oneOf([S.string(), S.null()]))
     .prop("createdAt", S.string())
     .prop("updatedAt", S.string())
+    .prop("deletedAt", S.oneOf([S.string().format("date-time"), S.null()]));
+
+  const creditCard = S.object()
+    .id("CreditCard")
+    .prop("id", S.number())
+    .prop("userId", S.number())
+    .prop("titularName", S.string())
+    .prop("number", S.string())
+    .prop("CVV", S.number())
+    .prop("expirationDate", S.string().format("date-time"))
+    .prop("createdAt", S.string().format("date-time"))
+    .prop("updatedAt", S.string().format("date-time"))
     .prop("deletedAt", S.oneOf([S.string().format("date-time"), S.null()]));
 
   const comment = S.object()
     .id("Comment")
     .prop("id", S.number())
     .prop("content", S.string())
-    .prop("productId", S.string())
+    .prop("productId", S.number())
     .prop("userId", S.oneOf([S.string(), S.null()]))
+    .prop("createdAt", S.string())
     .prop(
       "user",
       S.object()
         .prop("id", S.number())
         .prop("name", S.string())
         .prop("eamil", S.string())
-        .prop("photo", S.string())
+        .prop("avatarUrl", S.string())
+        .prop("rating", S.object().prop("value"))
     )
-    .prop("createdAt", S.string())
-    .prop("updatedAt", S.string())
-    .prop("deletedAt", S.oneOf([S.string().format("date-time"), S.null()]));
+    .prop("createdAt", S.string());
 
   const category = S.object()
     .id("Category")
@@ -69,8 +81,15 @@ export const configure = (fastify: FastifyInstance) => {
   const product = S.object()
     .id("Product")
     .prop("id", S.number().required())
-    .prop("value", S.number().required())
-    .prop("description", S.string().required())
+    .prop("value", S.string().required())
+    .prop("name", S.string().required())
+    .prop("description", S.string())
+    .prop("photo", S.string())
+    .prop("height", S.string())
+    .prop("width", S.string())
+    .prop("weight", S.string())
+    .prop("averageRating", S.number())
+    .prop("ratingCount", S.number())
     .prop("categoryId", S.number().required())
     .prop(
       "category",
@@ -84,6 +103,7 @@ export const configure = (fastify: FastifyInstance) => {
     .enum(["ASC", "asc", "DESC", "desc"])
     .id("OrderDirection");
 
+  fastify.addSchema(creditCard);
   fastify.addSchema(comment);
   fastify.addSchema(category);
   fastify.addSchema(product);
