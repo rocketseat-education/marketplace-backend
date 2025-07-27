@@ -2,7 +2,7 @@ export const uploadUserAvatarSchema = {
   description: "Upload de avatar do usuário",
   tags: ["Auth"],
   security: [{ bearerAuth: [] }],
-  consumes: ["multipart/form-data"], // Garanta que isso está presente para o Swagger
+  consumes: ["multipart/form-data"],
   response: {
     200: {
       description: "Avatar atualizado com sucesso",

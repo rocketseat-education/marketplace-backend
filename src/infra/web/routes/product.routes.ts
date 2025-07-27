@@ -12,9 +12,13 @@ import {
   getCategoriesSchema,
   getCommentsSchema,
   getProductsSchema,
+  getUserCommentSchema,
   rateProductSchema,
+  updateCommentSchema,
 } from "./schemas/product/products.chemas";
 import { FindProductCategoriesByIdController } from "../controllers/product/find-product-categories.controller";
+import { GetUserCommentController } from "../controllers/product/get-user-comment.controller";
+import { UpdateCommentController } from "../controllers/product/update-comment.controller";
 
 export const configure = (fastify: FastifyInstance) => {
   const getProductsController = new GetProductsController();
@@ -22,6 +26,8 @@ export const configure = (fastify: FastifyInstance) => {
   const findProductByIdController = new FindProductByIdController();
   const getCommentsController = new GetCommentsController();
   const createCommentController = new CreateCommentController();
+  const getUserCommentController = new GetUserCommentController();
+  const updateCommentController = new UpdateCommentController();
   const checkAuthenticated = new CheckAuthtenticationMiddleware();
   const findProductCategoriesByIdController =
     new FindProductCategoriesByIdController();
@@ -72,5 +78,21 @@ export const configure = (fastify: FastifyInstance) => {
     handler: createCommentController.execute,
     preHandler: [checkAuthenticated.execute],
     schema: createCommentSchema,
+  });
+
+  fastify.route({
+    url: "/products/:productId/user-comment",
+    method: "get",
+    handler: getUserCommentController.execute,
+    preHandler: [checkAuthenticated.execute],
+    schema: getUserCommentSchema,
+  });
+
+  fastify.route({
+    url: "/products/comments/:commentId",
+    method: "put",
+    handler: updateCommentController.execute,
+    preHandler: [checkAuthenticated.execute],
+    schema: updateCommentSchema,
   });
 };

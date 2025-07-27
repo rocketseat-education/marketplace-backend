@@ -375,7 +375,7 @@ export const commentsMock: Comment[] = [
     updatedAt: new Date("2025-06-13"),
   },
   {
-    userId: 321, // Alice Souza
+    userId: 321,
     productId: 26,
     content:
       "Excelente fone! O som é muito bom, especialmente os graves. A bateria realmente dura bastante tempo e é super confortável para usar por horas. Recomendo!",
@@ -383,7 +383,7 @@ export const commentsMock: Comment[] = [
     updatedAt: new Date("2024-03-15T14:30:00Z"),
   },
   {
-    userId: 324, // Daniel Ribeiro
+    userId: 324,
     productId: 26,
     content:
       "Bom custo-benefício. A qualidade do áudio é boa, mas já tive fones melhores. A função multipontos é útil para alternar entre celular e notebook.",
@@ -391,9 +391,8 @@ export const commentsMock: Comment[] = [
     updatedAt: new Date("2024-03-18T16:45:00Z"),
   },
 
-  // Barra de Proteína Probiótica Crisp Bar (ID: 27)
   {
-    userId: 325, // Elisa Martins
+    userId: 325,
     productId: 27,
     content:
       "Sabor muito bom! Não é enjoativo como outras barras de proteína. Textura crocante mesmo, uso sempre pós-treino.",
@@ -401,7 +400,7 @@ export const commentsMock: Comment[] = [
     updatedAt: new Date("2024-02-22T10:15:00Z"),
   },
   {
-    userId: 328, // Henrique Alves
+    userId: 328,
     productId: 27,
     content:
       "Boa barra, mas achei um pouco cara para o tamanho. O sabor cookies & cream é realmente gostoso.",
@@ -409,9 +408,8 @@ export const commentsMock: Comment[] = [
     updatedAt: new Date("2024-02-25T18:20:00Z"),
   },
 
-  // Cadeira Gamer Pichau Gaming Omega (ID: 28)
   {
-    userId: 3212, // Lucas Moreira
+    userId: 3212,
     productId: 28,
     content:
       "Cadeira muito confortável! Passo mais de 8 horas por dia trabalhando e não sinto dor nas costas. A reclinação é ótima para relaxar.",
@@ -419,7 +417,7 @@ export const commentsMock: Comment[] = [
     updatedAt: new Date("2024-03-10T20:30:00Z"),
   },
   {
-    userId: 326, // Felipe Santos
+    userId: 326,
     productId: 28,
     content:
       "Material de boa qualidade, montagem foi tranquila. Os braços 4D são muito práticos. Vale o investimento!",
@@ -427,9 +425,8 @@ export const commentsMock: Comment[] = [
     updatedAt: new Date("2024-03-12T15:45:00Z"),
   },
 
-  // Batedeira Planetária Britânia Prime (ID: 29)
   {
-    userId: 323, // Carla Mendes
+    userId: 323,
     productId: 29,
     content:
       "Perfeita para quem gosta de fazer bolos e pães! A tigela de inox é um diferencial. Muito potente e silenciosa.",
@@ -437,7 +434,7 @@ export const commentsMock: Comment[] = [
     updatedAt: new Date("2024-03-16T11:20:00Z"),
   },
   {
-    userId: 3213, // Mariana Freitas
+    userId: 3213,
     productId: 29,
     content:
       "Ótima batedeira! Consegue fazer massa de pão sem problemas. Os 3 batedores atendem todas as necessidades.",
@@ -445,9 +442,8 @@ export const commentsMock: Comment[] = [
     updatedAt: new Date("2024-03-18T14:30:00Z"),
   },
 
-  // Mochila Escolar Infantil Patrulha Canina (ID: 30)
   {
-    userId: 329, // Isabela Nunes
+    userId: 329,
     productId: 30,
     content:
       "Minha filha amou! A estampa é linda e o material parece resistente. Tem bastante espaço para o material escolar.",
@@ -455,7 +451,7 @@ export const commentsMock: Comment[] = [
     updatedAt: new Date("2024-02-20T09:15:00Z"),
   },
   {
-    userId: 3210, // João Carvalho
+    userId: 3210,
     productId: 30,
     content:
       "Comprei para meu sobrinho e ele ficou super feliz. Qualidade boa e preço justo.",
@@ -463,9 +459,8 @@ export const commentsMock: Comment[] = [
     updatedAt: new Date("2024-02-28T16:40:00Z"),
   },
 
-  // Kit Ferramentas Tramontina (ID: 31)
   {
-    userId: 322, // Bruno Lima
+    userId: 322,
     productId: 31,
     content:
       "Kit básico mas funcional. As ferramentas têm boa qualidade e a maleta organiza bem. Ideal para pequenos reparos.",
@@ -473,7 +468,7 @@ export const commentsMock: Comment[] = [
     updatedAt: new Date("2024-03-08T13:25:00Z"),
   },
   {
-    userId: 3216, // Paulo Silveira
+    userId: 3216,
     productId: 31,
     content:
       "Esperava um pouco mais pela marca Tramontina, mas atende para uso doméstico básico.",
@@ -481,9 +476,8 @@ export const commentsMock: Comment[] = [
     updatedAt: new Date("2024-03-14T17:10:00Z"),
   },
 
-  // Jogo de Tabuleiro Dixit Odyssey (ID: 32)
   {
-    userId: 327, // Gabriela Rocha
+    userId: 327,
     productId: 32,
     content:
       "Jogo incrível! As ilustrações são lindas e é muito divertido jogar em família. Estimula muito a criatividade.",
@@ -491,7 +485,7 @@ export const commentsMock: Comment[] = [
     updatedAt: new Date("2024-03-02T19:30:00Z"),
   },
   {
-    userId: 3214, // Nathan Costa
+    userId: 3214,
     productId: 32,
     content:
       "Excelente jogo! Jogamos com um grupo de 8 pessoas e foi muito divertido. Componentes de ótima qualidade.",
@@ -499,9 +493,8 @@ export const commentsMock: Comment[] = [
     updatedAt: new Date("2024-03-05T21:15:00Z"),
   },
 
-  // Vinho Tinto Chileno Concha y Toro (ID: 33)
   {
-    userId: 3218, // Rafael Borges
+    userId: 3218,
     productId: 33,
     content:
       "Vinho com ótimo custo-benefício. Sabor equilibrado, vai bem com carnes vermelhas. Recomendo!",
@@ -509,7 +502,7 @@ export const commentsMock: Comment[] = [
     updatedAt: new Date("2024-03-13T20:45:00Z"),
   },
   {
-    userId: 3220, // Tiago Fernandes
+    userId: 3220,
     productId: 33,
     content:
       "Bom vinho para o dia a dia. Nada excepcional, mas tem um sabor agradável e preço acessível.",
@@ -517,9 +510,8 @@ export const commentsMock: Comment[] = [
     updatedAt: new Date("2024-03-16T18:30:00Z"),
   },
 
-  // Conjunto de Jardineira Infantil Unicórnio (ID: 34)
   {
-    userId: 3211, // Karla Oliveira
+    userId: 3211,
     productId: 34,
     content:
       "Muito fofo! Minha filha não quer tirar. O tecido é macio e confortável. A estampa do unicórnio é linda.",
@@ -527,7 +519,7 @@ export const commentsMock: Comment[] = [
     updatedAt: new Date("2024-03-03T10:20:00Z"),
   },
   {
-    userId: 3215, // Olívia Barros
+    userId: 3215,
     productId: 34,
     content:
       "Comprei para minha sobrinha e ela amou! Qualidade do tecido é boa e o tamanho veio certinho.",
@@ -535,9 +527,8 @@ export const commentsMock: Comment[] = [
     updatedAt: new Date("2024-03-07T14:50:00Z"),
   },
 
-  // Barbeador Elétrico Philips AquaTouch S3000 (ID: 35)
   {
-    userId: 326, // Felipe Santos
+    userId: 326,
     productId: 35,
     content:
       "Bom barbeador! Faz um barbear rente e não irrita a pele. A bateria dura bastante tempo mesmo.",
@@ -545,7 +536,7 @@ export const commentsMock: Comment[] = [
     updatedAt: new Date("2024-03-11T07:30:00Z"),
   },
   {
-    userId: 3212, // Lucas Moreira
+    userId: 3212,
     productId: 35,
     content:
       "Uso há 2 semanas e estou satisfeito. O aparador é útil para ajustar bigode e costeletas.",
@@ -553,9 +544,8 @@ export const commentsMock: Comment[] = [
     updatedAt: new Date("2024-03-15T19:20:00Z"),
   },
 
-  // Cama Box Casal Ortobom (ID: 36)
   {
-    userId: 324, // Daniel Ribeiro
+    userId: 324,
     productId: 36,
     content:
       "Cama muito confortável! O colchão de molas ensacadas faz toda diferença. Estou dormindo muito melhor.",
@@ -563,7 +553,7 @@ export const commentsMock: Comment[] = [
     updatedAt: new Date("2024-03-08T22:15:00Z"),
   },
   {
-    userId: 3219, // Sabrina Teixeira
+    userId: 3219,
     productId: 36,
     content:
       "Excelente qualidade! A entrega foi rápida e a montagem foi fácil. Vale cada centavo investido.",
@@ -571,9 +561,8 @@ export const commentsMock: Comment[] = [
     updatedAt: new Date("2024-03-12T08:40:00Z"),
   },
 
-  // Copo Térmico Stanley Quencher (ID: 37)
   {
-    userId: 325, // Elisa Martins
+    userId: 325,
     productId: 37,
     content:
       "Copo incrível! Mantém a água gelada o dia todo. A tampa FlowState é muito prática. Virou meu companheiro diário!",
@@ -581,7 +570,7 @@ export const commentsMock: Comment[] = [
     updatedAt: new Date("2024-03-17T11:30:00Z"),
   },
   {
-    userId: 328, // Henrique Alves
+    userId: 328,
     productId: 37,
     content:
       "Produto de qualidade, mas achei caro. Funciona como prometido, mas existem opções mais baratas no mercado.",
@@ -589,9 +578,8 @@ export const commentsMock: Comment[] = [
     updatedAt: new Date("2024-03-19T15:45:00Z"),
   },
 
-  // Livro 'Mindset: A Nova Psicologia do Sucesso' (ID: 38)
   {
-    userId: 321, // Alice Souza
+    userId: 321,
     productId: 38,
     content:
       "Livro transformador! Mudou minha perspectiva sobre desafios e aprendizado. Recomendo para todos!",
@@ -599,7 +587,7 @@ export const commentsMock: Comment[] = [
     updatedAt: new Date("2024-03-15T16:20:00Z"),
   },
   {
-    userId: 3217, // Quitéria Ramos
+    userId: 3217,
     productId: 38,
     content:
       "Leitura muito interessante e educativa. Conceitos bem explicados e exemplos práticos. Vale a pena ler!",

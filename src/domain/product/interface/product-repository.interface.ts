@@ -38,11 +38,24 @@ export interface CreateComment {
   content: string;
   userId: number;
   productId: number;
+  rating?: number;
 }
 
 export interface GetUserRating {
   userId: number;
   productId: number;
+}
+
+export interface GetUserComment {
+  userId: number;
+  productId: number;
+}
+
+export interface UpdateComment {
+  commentId: number;
+  content: string;
+  userId: number;
+  rating?: number;
 }
 
 export interface ProductRepositoryInterface {
@@ -52,4 +65,6 @@ export interface ProductRepositoryInterface {
   getComments(params: GetCommentsParams): Promise<Paginated<Comment>>;
   createComment(params: CreateComment): Promise<void>;
   findUserRating(params: GetUserRating): Promise<Rating>;
+  findUserComment(params: GetUserComment): Promise<Comment | null>;
+  updateComment(params: UpdateComment): Promise<Comment>;
 }

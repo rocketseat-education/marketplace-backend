@@ -55,7 +55,6 @@ export class CreateOrderUseCase {
       });
     }
 
-    // Criar todos os pedidos
     const orders = await this.orderRepository.createMultipleOrders(
       ordersToCreate
     );

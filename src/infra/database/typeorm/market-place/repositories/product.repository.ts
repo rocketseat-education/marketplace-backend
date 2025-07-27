@@ -9,6 +9,8 @@ import {
   GetCommentsParams,
   GetProductsParams,
   GetUserRating,
+  GetUserComment,
+  UpdateComment,
   ProductRepositoryInterface,
   RateProduct,
 } from "../../../../../domain/product/interface/product-repository.interface";
@@ -127,7 +129,8 @@ export class ProductRepository implements ProductRepositoryInterface {
           "ratings.userId",
           "avatar.url",
         ])
-        .where("comment.productId = :productId", { productId });
+        .where("comment.productId = :productId", { productId })
+        .orderBy("comment.createdAt", "DESC");
 
       query.where("comment.productId = :productId", { productId });
 
@@ -280,6 +283,66 @@ export class ProductRepository implements ProductRepositoryInterface {
       };
     } catch (error) {
       throw new DatabaseError("Falha ao buscar produtos", error);
+    }
+  }
+
+  async findUserComment({
+    productId,
+    userId,
+  }: GetUserComment): Promise<Comment | null> {
+    try {
+      const comment = await this.commentRepository.findOne({
+        where: {
+          productId,
+          userId,
+        },
+        relations: ["user"],
+      });
+      return comment;
+    } catch (error) {
+      throw new DatabaseError("Falha ao buscar comentário do usuário", error);
+    }
+  }
+
+  async updateComment({
+    commentId,
+    content,
+    userId,
+    rating,
+  }: UpdateComment): Promise<Comment> {
+    try {
+      const existingComment = await this.commentRepository.findOne({
+        where: { id: commentId, userId },
+        relations: ["user"],
+      });
+
+      if (!existingComment) {
+        throw new NotFoundError(
+          "Comentário não encontrado ou não pertence ao usuário"
+        );
+      }
+
+      await this.commentRepository.update(commentId, { content });
+
+      if (rating !== undefined) {
+        await this.rateProdct({
+          userId,
+          productId: existingComment.productId,
+          value: rating,
+        });
+      }
+
+      const updatedComment = await this.commentRepository.findOne({
+        where: { id: commentId },
+        relations: ["user"],
+      });
+
+      return updatedComment!;
+    } catch (error) {
+      if (error instanceof NotFoundError) {
+        throw error;
+      }
+      throw new DatabaseError("Falha ao atualizar comentário", error);
     }
   }
 }

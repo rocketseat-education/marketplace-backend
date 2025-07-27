@@ -121,9 +121,12 @@ export const getCommentsSchema: FastifySchema = {
 
 const createCommentBody = S.object()
   .prop("content", S.string().required())
-  .prop("productId", S.number().required());
+  .prop("productId", S.number().required())
+  .prop("rating", S.number().minimum(1).maximum(5));
 
-const createCommentResponse = S.object().prop("message", S.string());
+const createCommentResponse = S.object()
+  .prop("message", S.string())
+  .prop("ratingApplied", S.boolean());
 
 export const createCommentSchema: FastifySchema = {
   tags: ["Products"],
@@ -221,6 +224,73 @@ export const getUserOrdersSchema: FastifySchema = {
   response: {
     200: getUserOrdersResponse,
     401: { $ref: "Unauthorized#" },
+    500: { $ref: "ServerError#" },
+  },
+};
+
+const getUserCommentParams = S.object().prop(
+  "productId",
+  S.string().required()
+);
+
+const getUserCommentResponse = S.object()
+  .prop(
+    "comment",
+    S.anyOf([
+      S.null(),
+      S.object()
+        .prop("id", S.number())
+        .prop("content", S.string())
+        .prop("createdAt", S.string().format("date-time"))
+        .prop(
+          "user",
+          S.object().prop("id", S.number()).prop("name", S.string())
+        ),
+    ])
+  )
+  .prop("rating", S.anyOf([S.null(), S.number().minimum(1).maximum(5)]));
+
+export const getUserCommentSchema: FastifySchema = {
+  tags: ["Products"],
+  security: [{ bearerAuth: [] }],
+  params: getUserCommentParams,
+  response: {
+    200: getUserCommentResponse,
+    401: { $ref: "Unauthorized#" },
+    404: { $ref: "NotFound#" },
+    500: { $ref: "ServerError#" },
+  },
+};
+
+const updateCommentParams = S.object().prop("commentId", S.string().required());
+
+const updateCommentBody = S.object()
+  .prop("content", S.string().required())
+  .prop("rating", S.number().minimum(1).maximum(5));
+
+const updateCommentResponse = S.object()
+  .prop("message", S.string())
+  .prop("ratingUpdated", S.boolean())
+  .prop(
+    "comment",
+    S.object()
+      .prop("id", S.number())
+      .prop("content", S.string())
+      .prop("createdAt", S.string().format("date-time"))
+      .prop("updatedAt", S.string().format("date-time"))
+  );
+
+export const updateCommentSchema: FastifySchema = {
+  tags: ["Products"],
+  security: [{ bearerAuth: [] }],
+  params: updateCommentParams,
+  body: updateCommentBody,
+  response: {
+    200: updateCommentResponse,
+    400: { $ref: "UnprocessableEntity#" },
+    401: { $ref: "Unauthorized#" },
+    404: { $ref: "NotFound#" },
+    422: { $ref: "UnprocessableEntity#" },
     500: { $ref: "ServerError#" },
   },
 };

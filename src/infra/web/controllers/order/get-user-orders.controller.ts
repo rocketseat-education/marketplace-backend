@@ -17,7 +17,7 @@ export class GetUserOrdersController {
 
       reply.send(result);
     } catch (error) {
-      throw error; // Repassa o erro para o error handler global
+      throw error;
     }
   };
 }
