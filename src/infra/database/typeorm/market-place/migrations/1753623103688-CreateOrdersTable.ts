@@ -68,10 +68,10 @@ export class CreateOrdersTable1753623103688 implements MigrationInterface {
     await queryRunner.createForeignKey(
       "orders",
       new TableForeignKey({
-        name: "FK_user_id",
-        columnNames: ["user_id"],
+        name: "FK_credit_card_id",
+        columnNames: ["credit_card_id"],
         referencedColumnNames: ["id"],
-        referencedTableName: "users",
+        referencedTableName: "credit_cards",
       })
     );
 
@@ -84,11 +84,22 @@ export class CreateOrdersTable1753623103688 implements MigrationInterface {
         referencedTableName: "products",
       })
     );
+
+    await queryRunner.createForeignKey(
+      "orders",
+      new TableForeignKey({
+        name: "FK_user_id",
+        columnNames: ["user_id"],
+        referencedColumnNames: ["id"],
+        referencedTableName: "users",
+      })
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropForeignKey("orders", "FK_user_id");
-    await queryRunner.dropForeignKey("orders", "product_id");
+    await queryRunner.dropForeignKey("orders", "FK_credit_card_id");
+    await queryRunner.dropForeignKey("orders", "FK_product_id");
     await queryRunner.dropTable("orders");
   }
 }

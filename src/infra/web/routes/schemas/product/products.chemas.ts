@@ -152,3 +152,75 @@ export const getCategoriesSchema: FastifySchema = {
     500: { $ref: "ServerError#" },
   },
 };
+
+const createOrderBody = S.object()
+  .prop("creditCardId", S.number().required())
+  .prop(
+    "items",
+    S.array()
+      .items(
+        S.object()
+          .prop("productId", S.number().required())
+          .prop("quantity", S.number().minimum(1).required())
+      )
+      .minItems(1)
+      .required()
+  );
+
+const createOrderResponse = S.object()
+  .prop("message", S.string())
+  .prop("ordersCount", S.number())
+  .prop(
+    "orders",
+    S.array().items(
+      S.object()
+        .prop("id", S.number())
+        .prop("productId", S.number())
+        .prop("quantity", S.number())
+        .prop("totalPrice", S.number())
+    )
+  );
+
+export const createOrderSchema: FastifySchema = {
+  tags: ["Orders"],
+  security: [{ bearerAuth: [] }],
+  body: createOrderBody,
+  response: {
+    200: createOrderResponse,
+    400: { $ref: "UnprocessableEntity#" },
+    401: { $ref: "Unauthorized#" },
+    404: { $ref: "NotFound#" },
+    422: { $ref: "UnprocessableEntity#" },
+    500: { $ref: "ServerError#" },
+  },
+};
+
+const getUserOrdersResponse = S.object()
+  .prop(
+    "orders",
+    S.array().items(
+      S.object()
+        .prop("id", S.number())
+        .prop("productId", S.number())
+        .prop("productName", S.string())
+        .prop("productPhoto", S.string())
+        .prop("quantity", S.number())
+        .prop("totalPrice", S.number())
+        .prop("createdAt", S.string().format("date-time"))
+        .prop(
+          "creditCard",
+          S.object().prop("id", S.number()).prop("maskedNumber", S.string())
+        )
+    )
+  )
+  .prop("totalOrders", S.number());
+
+export const getUserOrdersSchema: FastifySchema = {
+  tags: ["Orders"],
+  security: [{ bearerAuth: [] }],
+  response: {
+    200: getUserOrdersResponse,
+    401: { $ref: "Unauthorized#" },
+    500: { $ref: "ServerError#" },
+  },
+};

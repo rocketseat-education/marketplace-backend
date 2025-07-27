@@ -6,6 +6,7 @@ import { UnauthenticatedError } from "../../../shared/errors/unauthenticated.err
 import { ForbiddenError } from "../../../shared/errors/forbidden.error";
 import { UnprocessedEntityError } from "../../../shared/errors/unprocessed-entity.error";
 import { NotFoundError } from "../../../shared/errors/not-found.error";
+import { DatabaseError } from "../../../shared/errors/database.error";
 
 export const configure = (fastify: FastifyInstance) => {
   fastify.setErrorHandler((error, request, reply) => {
@@ -43,6 +44,12 @@ export const configure = (fastify: FastifyInstance) => {
 
     if (error instanceof NotFoundError) {
       return reply.status(404).send({
+        message: error.message,
+      });
+    }
+
+    if (error instanceof DatabaseError) {
+      return reply.status(500).send({
         message: error.message,
       });
     }
