@@ -1,15 +1,20 @@
 import { UserTypeormRepository } from "../../../infra/database/typeorm/market-place/repositories/user.repository";
+import { RefreshTokenRepository } from "../../../infra/database/typeorm/market-place/repositories/refresh-token.repository";
 import { CreateUserParams } from "../repositoryInterface/user-repository.interface";
 import { hashSync } from "bcrypt";
-import { sign } from "jsonwebtoken";
 import { AuthReponse } from "../interfaces/authResponse";
 import { UnauthenticatedError } from "../../../shared/errors/unauthenticated.error";
+import { JWTService } from "../../../shared/services/jwt.service";
 
 export class RegisterUseCase {
   private authRepository: UserTypeormRepository;
+  private refreshTokenRepository: RefreshTokenRepository;
+  private jwtService: JWTService;
 
   constructor() {
     this.authRepository = new UserTypeormRepository();
+    this.refreshTokenRepository = new RefreshTokenRepository();
+    this.jwtService = new JWTService();
   }
 
   async execute(user: CreateUserParams): Promise<AuthReponse> {
@@ -26,22 +31,22 @@ export class RegisterUseCase {
       password: encryptedPassword,
     });
 
-    const token = sign(
-      {
-        id: userCreated.id,
-        email: userCreated.email,
-      },
-      process.env.APP_SCRETET_KEY,
-      {
-        expiresIn: "365d",
-        algorithm: "HS256",
-      }
-    );
+    const { accessToken, refreshToken } = this.jwtService.generateTokenPair({
+      id: userCreated.id!,
+      email: userCreated.email,
+    });
+
+    await this.refreshTokenRepository.create({
+      token: refreshToken,
+      userId: userCreated.id!,
+      expiresAt: this.jwtService.getRefreshTokenExpiryDate(),
+    });
 
     delete userCreated.password;
 
     return {
-      token,
+      token: accessToken,
+      refreshToken,
       user: userCreated,
     };
   }

@@ -2,7 +2,9 @@ import { FastifyInstance } from "fastify";
 import { registerSchema } from "./schemas/authentication/register.schema";
 import { AuthenticateController } from "../controllers/user/authenticate.controller";
 import { RegisterController } from "../controllers/user/register.controller";
+import { RefreshTokenController } from "../controllers/user/refresh-token.controller";
 import { loginSchema } from "./schemas/authentication/login.schema";
+import { refreshTokenSchema } from "./schemas/authentication/refresh-token.schema";
 import { UpdateUserDataController } from "../controllers/user/update-user-data.controller";
 import { updateUserDataSchema } from "./schemas/authentication/update-user-data.schema";
 import { CheckAuthtenticationMiddleware } from "../middlewares/check-authentication";
@@ -12,6 +14,7 @@ import { UploadUserAvatarController } from "../controllers/user/upload-user-avat
 export const configure = (fastify: FastifyInstance) => {
   const authenticateController = new AuthenticateController();
   const registerController = new RegisterController();
+  const refreshTokenController = new RefreshTokenController();
   const updateUserData = new UpdateUserDataController();
   const uploadImageController = new UploadUserAvatarController();
   const checkAuthenticated = new CheckAuthtenticationMiddleware();
@@ -28,6 +31,13 @@ export const configure = (fastify: FastifyInstance) => {
     method: "post",
     handler: authenticateController.execute,
     schema: loginSchema,
+  });
+
+  fastify.route({
+    url: "/auth/refresh",
+    method: "post",
+    handler: refreshTokenController.execute,
+    schema: refreshTokenSchema,
   });
 
   fastify.route({

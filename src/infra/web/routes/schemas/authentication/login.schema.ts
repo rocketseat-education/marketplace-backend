@@ -7,7 +7,8 @@ const body = S.object()
 
 const successResponse = S.object()
   .prop("user", S.ref("User#"))
-  .prop("token", S.string().required());
+  .prop("token", S.string().required())
+  .prop("refreshToken", S.string().required());
 
 export const loginSchema: FastifySchema = {
   tags: ["Auth"],

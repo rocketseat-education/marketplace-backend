@@ -7,6 +7,7 @@ import { ForbiddenError } from "../../../shared/errors/forbidden.error";
 import { UnprocessedEntityError } from "../../../shared/errors/unprocessed-entity.error";
 import { NotFoundError } from "../../../shared/errors/not-found.error";
 import { DatabaseError } from "../../../shared/errors/database.error";
+import { JWTError } from "../../../shared/errors/jwt.error";
 
 export const configure = (fastify: FastifyInstance) => {
   fastify.setErrorHandler((error, request, reply) => {
@@ -27,6 +28,14 @@ export const configure = (fastify: FastifyInstance) => {
       return reply.status(400).send({
         message: error.message,
         internalErrorCode: error.getAppInternalCode(),
+      });
+    }
+
+    if (error instanceof JWTError) {
+      return reply.status(401).send({
+        message: error.message,
+        errorType: error.getErrorType(),
+        code: "JWT_ERROR",
       });
     }
 

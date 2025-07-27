@@ -1,15 +1,20 @@
 import { UserTypeormRepository } from "../../../infra/database/typeorm/market-place/repositories/user.repository";
+import { RefreshTokenRepository } from "../../../infra/database/typeorm/market-place/repositories/refresh-token.repository";
 import { compare } from "bcrypt";
-import { sign } from "jsonwebtoken";
 import { AuthLoginRequest } from "../interfaces/authLoginRequest";
 import { NotFoundError } from "../../../shared/errors/not-found.error";
 import { UnauthenticatedError } from "../../../shared/errors/unauthenticated.error";
+import { JWTService } from "../../../shared/services/jwt.service";
 
 export class AuthenticateUseCase {
   private authRepository: UserTypeormRepository;
+  private refreshTokenRepository: RefreshTokenRepository;
+  private jwtService: JWTService;
 
   constructor() {
     this.authRepository = new UserTypeormRepository();
+    this.refreshTokenRepository = new RefreshTokenRepository();
+    this.jwtService = new JWTService();
   }
 
   async execute({ email, password }: AuthLoginRequest) {
@@ -25,22 +30,24 @@ export class AuthenticateUseCase {
       throw new UnauthenticatedError("A senha está inválida!");
     }
 
-    const token = sign(
-      {
-        id: user.id,
-        email,
-      },
-      process.env.APP_SCRETET_KEY,
-      {
-        expiresIn: "365d",
-        algorithm: "HS256",
-      }
-    );
+    await this.refreshTokenRepository.revokeByUserId(user.id!);
+
+    const { accessToken, refreshToken } = this.jwtService.generateTokenPair({
+      id: user.id!,
+      email: user.email,
+    });
+
+    await this.refreshTokenRepository.create({
+      token: refreshToken,
+      userId: user.id!,
+      expiresAt: this.jwtService.getRefreshTokenExpiryDate(),
+    });
 
     delete user.password;
 
     return {
-      token,
+      token: accessToken,
+      refreshToken,
       user,
     };
   }
