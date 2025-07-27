@@ -33,7 +33,8 @@ export class CreditCardController {
     request: FastifyRequest<CreateCreditCardRequest>,
     reply: FastifyReply
   ): Promise<void> => {
-    const { titularName, number, CVV, value, expirationDate } = request.body;
+    const titularName = request.user.name;
+    const { number, CVV, value, expirationDate } = request.body;
     const userId = request.user.id;
     const parsedExpirationDate = new Date(expirationDate);
 

@@ -8,14 +8,8 @@ export const createCreditCardSchema = {
   security: [{ bearerAuth: [] }],
   body: {
     type: "object",
-    required: ["titularName", "number", "CVV", "value", "expirationDate"],
+    required: ["number", "CVV", "expirationDate"],
     properties: {
-      titularName: {
-        type: "string",
-        minLength: 2,
-        maxLength: 100,
-        description: "Nome do titular do cartão",
-      },
       number: {
         type: "string",
         pattern: "^[0-9]{16}$",
@@ -49,7 +43,7 @@ export const createCreditCardSchema = {
             userId: { type: "integer" },
             titularName: { type: "string" },
             number: { type: "string" },
-            value: { type: "number" },
+            CVV: { type: "number" },
             expirationDate: { type: "string" },
             createdAt: { type: "string" },
             updatedAt: { type: "string" },
@@ -128,7 +122,7 @@ const getCreditCardByIdSchema = {
             userId: { type: "integer" },
             titularName: { type: "string" },
             number: { type: "string" },
-            value: { type: "number" },
+            CVV: { type: "number" },
             expirationDate: { type: "string" },
             createdAt: { type: "string" },
             updatedAt: { type: "string" },

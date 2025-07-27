@@ -24,8 +24,25 @@ export class CreateOrdersTable1753623103688 implements MigrationInterface {
             isNullable: false,
           },
           {
+            name: "credit_card_id",
+            type: "integer",
+            isNullable: false,
+          },
+          {
             name: "product_id",
             type: "integer",
+            isNullable: false,
+          },
+          {
+            name: "quantity",
+            type: "integer",
+            isNullable: false,
+          },
+          {
+            name: "total_price",
+            type: "decimal",
+            precision: 10,
+            scale: 2,
             isNullable: false,
           },
           {
