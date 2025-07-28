@@ -24,7 +24,6 @@ export class GetUserCommentController {
         userId,
         productId: parseInt(productId),
       });
-      console.log(JSON.stringify(result, null, 2));
       reply.send(result);
     } catch (error) {
       throw error;

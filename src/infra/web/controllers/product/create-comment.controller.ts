@@ -16,7 +16,6 @@ export class CreateCommentController {
     const params = request.body;
     const userId = request.user.id;
     const hasRating = params.rating !== undefined;
-    console.log(params);
     await this.createCommentLogic.execute({ ...params, userId });
 
     const message = hasRating

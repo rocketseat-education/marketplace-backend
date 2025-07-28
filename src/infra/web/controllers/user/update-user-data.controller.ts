@@ -18,7 +18,6 @@ export class UpdateUserDataController {
     userData.email = userData.email.toLowerCase();
 
     const user = await this.updateUserDataUseCase.execute(userData, email);
-    console.log(user);
     reply.send({ user });
   };
 }

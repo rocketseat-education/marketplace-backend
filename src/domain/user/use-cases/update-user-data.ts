@@ -39,7 +39,6 @@ export class UpdateUserDataUseCase {
     }
 
     delete userData.newPassword;
-    console.log(userData);
     const user = await this.userRepository.updateUserData(userData);
 
     delete user.password;

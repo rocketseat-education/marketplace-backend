@@ -67,7 +67,6 @@ export class ProductRepository implements ProductRepositoryInterface {
         productId,
       });
 
-      console.log(ratingCreated);
 
       const ratings = await this.ratingRepository.find({
         where: {
@@ -79,10 +78,7 @@ export class ProductRepository implements ProductRepositoryInterface {
 
       const avg = ratings.length > 0 ? total / ratings.length : 0;
       const averageRating = parseFloat(avg.toFixed(1));
-      console.log({
-        averageRating,
-        ratingCount: ratings.length,
-      });
+
       await this.productRepository.update(
         { id: productId },
         {

@@ -61,7 +61,6 @@ export class CreditCardController {
     const creditCards = await this.findCreditCardsByUserIdUseCase.execute(
       userId
     );
-    console.log(creditCards);
     reply.status(200).send(creditCards);
   };
 }

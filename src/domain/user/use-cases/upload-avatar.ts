@@ -22,7 +22,6 @@ export class UploadUserAvatarUseCase implements IUploadUserAvatarUseCase {
   async execute(
     request: UploadUserAvatarRequest
   ): Promise<UploadUserAvatarResponse> {
-    console.log(request);
     const { userId, file } = request;
 
     const allowedMimeTypes = [
