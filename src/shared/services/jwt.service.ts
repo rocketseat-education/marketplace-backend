@@ -52,7 +52,6 @@ export class JWTService {
     return new Date(now.getTime() + expiryDays * 24 * 60 * 60 * 1000);
   }
 
-  // Método para verificar se um refresh token ainda é válido (não expirado)
   isRefreshTokenValid(expiresAt: Date): boolean {
     return new Date() < expiresAt;
   }
