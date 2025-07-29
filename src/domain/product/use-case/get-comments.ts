@@ -12,14 +12,18 @@ export class GetCommentsUseCase {
 
   async execute(params: GetCommentsParams): Promise<Paginated<Comment>> {
     const productsResponse = await this.productRepository.getComments(params);
+    const { productId } = params;
+
     const data = productsResponse.data.map((product) => ({
       ...product,
       user: {
         ...product.user,
-        rating: product.user?.ratings![0],
+        rating: product.user?.ratings?.find(
+          (rating) => rating.productId === productId
+        ),
       },
     }));
-
+    console.log(data);
     return {
       ...productsResponse,
       data,

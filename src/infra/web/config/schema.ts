@@ -68,8 +68,8 @@ export const configure = (fastify: FastifyInstance) => {
         .prop("id", S.number())
         .prop("name", S.string())
         .prop("eamil", S.string())
-        .prop("avatarUrl", S.string())
-        .prop("rating", S.object().prop("value"))
+        .prop("avatar", S.object().prop("url", S.string()))
+        .prop("rating", S.object().prop("value", S.number()))
     )
     .prop("createdAt", S.string());
 

@@ -15,6 +15,7 @@ export class GetCommentsController {
   ) => {
     const params = request.body;
     const comments = await this.getCommentsLogic.execute(params);
+    console.log(JSON.stringify(comments, null, 2));
     reply.send(comments);
   };
 }
