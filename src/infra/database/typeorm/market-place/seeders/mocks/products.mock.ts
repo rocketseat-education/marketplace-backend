@@ -2,7 +2,6 @@ import { Product } from "../../entities/Product";
 
 export const products: Product[] = [
   {
-    id: 1,
     name: "Sofá",
     description:
       "Sofá revestido com couro legítimo, com estrutura em madeira maciça e pés em metal cromado.",
@@ -18,7 +17,6 @@ export const products: Product[] = [
     views: 78,
   },
   {
-    id: 2,
     name: "Camisa masculina",
     description:
       "Camisa masculina, feita em tecido de algodão com corte moderno e detalhes de borda.",
@@ -34,7 +32,6 @@ export const products: Product[] = [
     views: 78,
   },
   {
-    id: 3,
     name: "Kit de utencilhos",
     description:
       "Kit de utencilhos, com 10 utencilhos de diferentes tamanhos e formas, feito em metal com acabamento em cromo.",
@@ -50,7 +47,6 @@ export const products: Product[] = [
     views: 78,
   },
   {
-    id: 4,
     name: "Kit de cremes",
     description:
       "Kit de cremes, com 3 cremes diferentes, feito em metal com acabamento em cromo.",
@@ -66,7 +62,6 @@ export const products: Product[] = [
     views: 78,
   },
   {
-    id: 5,
     name: "Caderno de desenho",
     description:
       "Caderno de desenho, com 100 folhas de papel sulfite, feito em papel de alta qualidade, com bordas arredondadas e capa em couro sintético.",
@@ -82,7 +77,6 @@ export const products: Product[] = [
     views: 78,
   },
   {
-    id: 6,
     name: "Carrinho de brinquedo",
     description:
       "Carrinho de brinquedo, com 4 rodas e estrutura em metal com acabamento em cromo.",

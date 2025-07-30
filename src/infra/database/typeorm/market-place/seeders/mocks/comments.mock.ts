@@ -560,38 +560,4 @@ export const commentsMock: Comment[] = [
     createdAt: new Date("2024-03-12T08:40:00Z"),
     updatedAt: new Date("2024-03-12T08:40:00Z"),
   },
-
-  {
-    userId: 325,
-    productId: 37,
-    content:
-      "Copo incrível! Mantém a água gelada o dia todo. A tampa FlowState é muito prática. Virou meu companheiro diário!",
-    createdAt: new Date("2024-03-17T11:30:00Z"),
-    updatedAt: new Date("2024-03-17T11:30:00Z"),
-  },
-  {
-    userId: 328,
-    productId: 37,
-    content:
-      "Produto de qualidade, mas achei caro. Funciona como prometido, mas existem opções mais baratas no mercado.",
-    createdAt: new Date("2024-03-19T15:45:00Z"),
-    updatedAt: new Date("2024-03-19T15:45:00Z"),
-  },
-
-  {
-    userId: 321,
-    productId: 38,
-    content:
-      "Livro transformador! Mudou minha perspectiva sobre desafios e aprendizado. Recomendo para todos!",
-    createdAt: new Date("2024-03-15T16:20:00Z"),
-    updatedAt: new Date("2024-03-15T16:20:00Z"),
-  },
-  {
-    userId: 3217,
-    productId: 38,
-    content:
-      "Leitura muito interessante e educativa. Conceitos bem explicados e exemplos práticos. Vale a pena ler!",
-    createdAt: new Date("2024-03-18T13:10:00Z"),
-    updatedAt: new Date("2024-03-18T13:10:00Z"),
-  },
 ];
