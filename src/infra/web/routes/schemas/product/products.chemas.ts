@@ -15,6 +15,8 @@ const getProductsBody = S.object()
       .prop("to", S.string().format("date-time"))
       .prop("categoryIds", S.array().items(S.number()))
       .prop("searchText", S.string())
+      .prop("minValue", S.number())
+      .prop("maxValue", S.number())
   )
   .prop("sort", S.object().prop("averageRating", S.ref("OrderDirection#")));
 

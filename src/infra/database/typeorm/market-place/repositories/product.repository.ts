@@ -67,7 +67,6 @@ export class ProductRepository implements ProductRepositoryInterface {
         productId,
       });
 
-
       const ratings = await this.ratingRepository.find({
         where: {
           productId,
@@ -250,6 +249,18 @@ export class ProductRepository implements ProductRepositoryInterface {
       if (filters?.categoryIds?.length) {
         query.andWhere("product.categoryId IN (:...categoryIds)", {
           categoryIds: filters.categoryIds,
+        });
+      }
+
+      if (filters?.minValue !== undefined) {
+        query.andWhere("CAST(product.value AS REAL) >= :minValue", {
+          minValue: filters.minValue,
+        });
+      }
+
+      if (filters?.maxValue !== undefined) {
+        query.andWhere("CAST(product.value AS REAL) <= :maxValue", {
+          maxValue: filters.maxValue,
         });
       }
 

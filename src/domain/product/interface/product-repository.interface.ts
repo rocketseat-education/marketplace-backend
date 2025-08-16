@@ -14,6 +14,8 @@ export interface GetProductsParams {
     to?: Date | undefined;
     categoryIds?: number[];
     searchText?: string;
+    minValue?: number;
+    maxValue?: number;
   };
   sort?: {
     averageRating?: OrderDirection;

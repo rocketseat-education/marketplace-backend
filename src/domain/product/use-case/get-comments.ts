@@ -23,7 +23,6 @@ export class GetCommentsUseCase {
         ),
       },
     }));
-    console.log(data);
     return {
       ...productsResponse,
       data,

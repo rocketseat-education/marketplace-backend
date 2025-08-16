@@ -3,6 +3,7 @@ import { UserAvatar } from "../../../infra/database/typeorm/market-place/entitie
 import { CreditCard } from "../../../infra/database/typeorm/market-place/entities/CreditCard";
 
 export interface CreateUserParams {
+  id?: number;
   name: string;
   email: string;
   phone?: string;

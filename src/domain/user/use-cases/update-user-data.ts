@@ -39,7 +39,10 @@ export class UpdateUserDataUseCase {
     }
 
     delete userData.newPassword;
-    const user = await this.userRepository.updateUserData(userData);
+    const user = await this.userRepository.updateUserData({
+      ...userData,
+      id: userExist.id,
+    });
 
     delete user.password;
 
