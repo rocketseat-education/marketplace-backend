@@ -366,7 +366,7 @@ export const products: Product[] = [
     description:
       "Conjunto de panelas Tramontina com 5 peças, revestimento antiaderente Starflon T1 que garante maior durabilidade e facilita a limpeza. Cabos e alças em material antitérmico para segurança no manuseio. Tampas de vidro temperado com saída de vapor. Inclui: 1 panela, 2 caçarolas, 1 frigideira e 1 fervedor. Ideal para o preparo de diversas receitas, proporcionando cozimento uniforme e eficiente.",
     categoryId: 2,
-    photo: "http://localhost:3001/assets/images/panelas-tramontina.jpg",
+    photo: "http://localhost:3001/assets/images/panelas.png",
     value: "199.90",
     createdAt: new Date("2024-03-03T12:00:00Z"),
     averageRating: 0,
@@ -392,18 +392,6 @@ export const products: Product[] = [
     views: 79,
   },
   {
-    name: "Barra de Proteína Probiótica Crisp Bar Cookies & Cream",
-    description:
-      "Barra de proteína Probiótica Crisp Bar sabor Cookies & Cream, ideal para lanches rápidos e pré/pós-treino. Contém 13g de proteína por porção e alto teor de fibras. Textura crocante e sabor delicioso. Ajuda na recuperação muscular e na saciedade. Sem adição de açúcar e glúten. Embalagem individual, prática para levar a qualquer lugar.",
-    categoryId: 9,
-    photo: "http://localhost:3001/assets/images/barra-proteina.jpg",
-    value: "12.90",
-    createdAt: new Date("2024-02-18T16:30:00Z"),
-    averageRating: 0,
-    ratingCount: 0,
-    views: 98,
-  },
-  {
     name: "Cadeira Gamer Pichau Gaming Omega",
     description:
       "Cadeira gamer Pichau Gaming Omega, ergonômica e confortável para longas sessões de jogo. Revestimento em couro sintético de alta qualidade, espuma de alta densidade e estrutura de aço resistente. Inclui almofadas de pescoço e lombar ajustáveis. Braços 4D e reclinação de até 180 graus. Base de nylon reforçado com rodízios silenciosos. Design moderno e arrojado.",
@@ -414,30 +402,6 @@ export const products: Product[] = [
     averageRating: 0,
     ratingCount: 0,
     views: 7,
-  },
-  {
-    name: "Batedeira Planetária Britânia Prime",
-    description:
-      "Batedeira planetária Britânia Prime com 700W de potência e 12 velocidades, ideal para massas leves, médias e pesadas. Tigela de inox com capacidade de 4 litros e tampa antirrespingos. Acompanha 3 batedores: globo, raquete e gancho. Movimento planetário para mistura homogênea. Design moderno e base antiderrapante. Perfeita para preparar bolos, pães e doces.",
-    categoryId: 2,
-    photo: "http://localhost:3001/assets/images/batedeira-britania.jpg",
-    value: "279.75",
-    createdAt: new Date("2024-03-14T11:00:00Z"),
-    averageRating: 0,
-    ratingCount: 0,
-    views: 25,
-  },
-  {
-    name: "Kit Ferramentas Tramontina 10 Peças",
-    description:
-      "Kit de ferramentas Tramontina com 10 peças essenciais para pequenos reparos domésticos. Inclui martelo, chaves de fenda, alicate universal, trena e estilete. Ferramentas em aço carbono de alta qualidade com cabos ergonômicos para conforto e segurança. Maleta plástica para organização e transporte. Ideal para ter em casa e realizar tarefas básicas de manutenção.",
-    categoryId: 10,
-    photo: "http://localhost:3001/assets/images/kit-ferramentas.jpg",
-    value: "129.90",
-    createdAt: new Date("2024-03-06T13:00:00Z"),
-    averageRating: 0,
-    ratingCount: 0,
-    views: 38,
   },
   {
     name: "Jogo de Tabuleiro Dixit Odyssey",
@@ -452,23 +416,11 @@ export const products: Product[] = [
     views: 84,
   },
   {
-    name: "Vinho Tinto Chileno Concha y Toro Cabernet Sauvignon",
+    name: "Barbeador Elétrico",
     description:
-      "Vinho tinto chileno Concha y Toro safra 2022, varietal Cabernet Sauvignon, com notas de frutas vermelhas e especiarias. Ideal para harmonizar com carnes vermelhas, massas e queijos. Volume: 750ml. Teor alcoólico: 13,5%. Produzido no Vale Central, Chile. Vinho de corpo médio, taninos macios e final persistente. Excelente custo-benefício.",
-    categoryId: 9,
-    photo: "http://localhost:3001/assets/images/vinho-concha-toro.jpg",
-    value: "42.80",
-    createdAt: new Date("2024-03-11T16:00:00Z"),
-    averageRating: 0,
-    ratingCount: 0,
-    views: 71,
-  },
-  {
-    name: "Barbeador Elétrico Philips AquaTouch S3000",
-    description:
-      "Barbeador elétrico Philips AquaTouch S3000 para uso seco e molhado. Lâminas ComfortCut que deslizam suavemente sobre a pele, proporcionando um barbear rente e confortável. Cabeças flexíveis em 5 direções. Bateria de íon de lítio com 60 minutos de autonomia após 1 hora de carga. Aparador retrátil para bigode e costeletas. Totalmente lavável para limpeza fácil.",
+      "Barbeador elétrico para uso seco e molhado. Lâminas ComfortCut que deslizam suavemente sobre a pele, proporcionando um barbear rente e confortável. Cabeças flexíveis em 5 direções. Bateria de íon de lítio com 60 minutos de autonomia após 1 hora de carga. Aparador retrátil para bigode e costeletas. Totalmente lavável para limpeza fácil.",
     categoryId: 4,
-    photo: "http://localhost:3001/assets/images/barbeador-philips.jpg",
+    photo: "http://localhost:3001/assets/images/barbeador.png",
     value: "229.40",
     createdAt: new Date("2024-03-09T14:00:00Z"),
     averageRating: 0,
@@ -488,27 +440,15 @@ export const products: Product[] = [
     views: 28,
   },
   {
-    name: "Piscina Inflável Infantil Intex 1000 Litros",
+    name: "Piscina Inflável",
     description:
-      "Piscina inflável infantil Intex com capacidade para 1000 litros, ideal para refrescar as crianças nos dias quentes. Fácil de montar e desmontar, possui válvulas de enchimento rápido e esvaziamento. Fabricada em PVC resistente, com bordas infláveis para maior segurança. Dimensões: 1,88m de diâmetro x 46cm de altura. Perfeita para o quintal, jardim ou varanda.",
+      "Piscina inflável com capacidade para 1000 litros, ideal para refrescar as crianças nos dias quentes. Fácil de montar e desmontar, possui válvulas de enchimento rápido e esvaziamento. Fabricada em PVC resistente, com bordas infláveis para maior segurança. Dimensões: 1,88m de diâmetro x 46cm de altura. Perfeita para o quintal, jardim ou varanda.",
     categoryId: 8,
-    photo: "http://localhost:3001/assets/images/piscina-intex.jpg",
+    photo: "http://localhost:3001/assets/images/psina.png",
     value: "159.60",
     createdAt: new Date("2024-03-16T15:00:00Z"),
     averageRating: 0,
     ratingCount: 0,
     views: 43,
-  },
-  {
-    name: "Relógio Smartwatch Xiaomi Mi Band 7",
-    description:
-      "Smartwatch Xiaomi Mi Band 7 com tela AMOLED de 1.62 polegadas, monitoramento contínuo de frequência cardíaca, SpO2 e sono. Mais de 110 modos esportivos, resistência à água 5ATM. Bateria de longa duração (até 14 dias de uso típico). Notificações de chamadas e mensagens, controle de música e outras funções inteligentes. Leve e confortável, ideal para o dia a dia e atividades físicas.",
-    categoryId: 7,
-    photo: "http://localhost:3001/assets/images/mi-band-7.jpg",
-    value: "189.30",
-    createdAt: new Date("2024-03-20T11:30:00Z"),
-    averageRating: 0,
-    ratingCount: 0,
-    views: 75,
   },
 ];
