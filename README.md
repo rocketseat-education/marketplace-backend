@@ -16,7 +16,7 @@ Siga os passos abaixo para configurar e rodar o projeto em seu ambiente local.
 ### 1️⃣ Clonar o repositório
 
 ```sh
-git clone https://github.com/brenooliveiranascimento/DT-money-backend.git
+git clone https://github.com/rocketseat-education/marketplace-backend.git
 cd dtmoney-backend
 ```
 
