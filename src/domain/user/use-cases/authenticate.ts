@@ -48,7 +48,10 @@ export class AuthenticateUseCase {
     return {
       token: accessToken,
       refreshToken,
-      user,
+      user: {
+        ...user,
+        avatarUrl: user.avatar?.url,
+      }
     };
   }
 }
