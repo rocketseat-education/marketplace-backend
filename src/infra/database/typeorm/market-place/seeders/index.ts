@@ -21,7 +21,7 @@ export class SeederService {
   }
 
   async run() {
-    this.execute();
+    await this.execute();
   }
 
   private async seedCategories() {
